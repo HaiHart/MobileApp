@@ -6,6 +6,7 @@ import Login from "./Components/LogIn";
 import Home from "./Components/Home";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
+import EditProfile from "./Components/EditProfile";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -13,10 +14,15 @@ export default function App() {
    <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
+          name="EditProfile"
+          component = {EditProfile}
+          options={{headerShown: false}}
+        />
+      {/* <Stack.Screen
         name="Profile"
         component = {Profile}
         options={{headerShown: false}}
-      />
+      /> */}
       {/* <Stack.Screen
         name="Login"
         component = {Login}
