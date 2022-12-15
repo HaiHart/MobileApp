@@ -205,7 +205,10 @@ export function Role({ role, setRole, navigation, name, phone }) {
         }}
         onPress={() => {
           console.log(name, phone, role)
-          navigation.navigate("HomeManager", {
+          // navigation.navigate(role==="Manager"? "HomeManager":"HomeRenter", {
+          //   info: { name: name, phone: phone, role: role },
+          // });
+          navigation.navigate("Home", {
             info: { name: name, phone: phone, role: role },
           });
         }}
@@ -280,12 +283,14 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
             }}
             value={info.name}
           />
-          <ReactNativePhoneInput
+          <TextInput
             style={styles.field}
+            keyboardType="phone-pad"
             textProps={{
               placeholder: "Phone Number",
             }}
-            onChangePhoneNumber={(e) => {
+            placeholder={"Phone Number"}
+            onChangeText={(e) => {
               setInfo((pre) => {
                 return { ...pre, phone: e };
               });

@@ -144,7 +144,8 @@ export default function Login({ navigation, route }) {
           <Text style={styles.text}>Sign In</Text>
         </View>
         <View>
-          <PhoneInput
+          <TextInput
+            keyboardType="phone-pad"
             inputStyle={{
               boxSizing: "border-box",
               width: 300,
@@ -159,7 +160,8 @@ export default function Login({ navigation, route }) {
             textProps={{
               placeholder: "Phone Number",
             }}
-            onChangePhoneNumber={setPhone}
+            placeholder={"Phone Number"}
+            onChangeText={setPhone}
             value={phone}
           />
           <TextInput

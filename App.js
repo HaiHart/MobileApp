@@ -55,11 +55,12 @@ const Logged = ({navigation, route}) => {
       <Tab.Screen 
         name="HomePage" 
         component={HomeManager}
+        
         options={{ headerShown: false }}
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
-        component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        component={(role === "Renter" ? ServiceRenter : ServiceManager)}
         options={{ headerShown: false }}
       ></Tab.Screen>
       <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
@@ -94,6 +95,11 @@ export default function App() {
             component={HomeManager}
             options={{ headerShown: false }}
           />
+          {/* <Stack.Screen
+            name="HomeRenter"  
+            component={Home}
+            options={{ headerShown: false }}
+          /> */}
           <Stack.Screen
             name="Notification"
             component={Notification}
