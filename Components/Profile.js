@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 export default function Profile({ navigation, route }) {
   console.log(">> Profile screen");
 
+  const {info} = route.params;
+
   const [isReturn, setIsReturn] = useState(false);
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [isSetting, setIsSetting] = useState(false);

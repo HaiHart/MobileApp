@@ -1,19 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar, TouchableOpacity} from "react-native";
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 const DATA = [
   {
-    title: "YESTERDAY",
-    data: ["Pizza", "Burger", "Risotto"]
+    home_id: "1",
+    time: "15/12/2022",
+    type: "Tiền nhà",
+    content: "Tiền nhà Tháng này là 12 triệu, vui lòng thành toán trước ngày 20/12/2022",
+    cost: "12 triệu",
+    extend: true,
+    approve: true,
   },
   {
-    title: "13/12/2022",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+    home_id: "1",
+    time: "15/12/2022",
+    type: "Hợp đồng",
+    content: "Đặng Quốc Thanh vừa thuê phòng số 5",
+    cost: "2 triệu",
+    extend: false,
+    approve: true,
   },
   {
-    title: "10/11/2022",
-    data: ["Water", "Coke", "Beer"]
+    home_id: "1",
+    time: "17/12/2022",
+    type: "Hợp đồng",
+    content: "Đặng Quốc Thanh vừa thuê phòng số 5",
+    cost: "2 triệu",
+    extend: false,
+    approve: true,
   },
 ];
 
@@ -34,21 +49,23 @@ export default function Notification() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={header_styles.container}>
+            <TouchableOpacity 
+              style={header_styles.container}
+              onPress={() => navigation.goBack()}>
                 <AntDesign 
                     name="left" size={24} color="black" 
                     style={header_styles.icon}/>
                 <Text style={header_styles.title} >Notitification</Text>
-            </View>
-            <SectionList
-            sections={DATA}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({ item }) => <Item title={item} />}
-            renderSectionHeader={({ section: { title } }) => (
-                <Text style={styles.header}>{title}</Text>
-            )}
+              </TouchableOpacity>
+            {/* <SectionList
+              sections={DATA}
+              keyExtractor={(item, index) => item + index}
+              renderItem={({ item }) => <Item title={item} />}
+              renderSectionHeader={({ section: { title } }) => (
+                  <Text style={styles.header}>{title}</Text>
+              )}
             stickySectionHeadersEnabled={false}
-            />
+            /> */}
         </SafeAreaView>
     )
 }

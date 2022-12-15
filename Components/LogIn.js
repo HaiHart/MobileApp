@@ -59,7 +59,7 @@ export default function Login({ navigation, route }) {
             const input = JSON.parse(answer);
             if (input[phone]){
               if (input[phone]["pass"] === pass){
-                setName(input[phone][name])
+                setName(input[phone]['name'])
                 setChose(true)
                 return
               }else{
@@ -80,9 +80,10 @@ export default function Login({ navigation, route }) {
       })
     if (phone === "113" || pass == "113") {
       console.log("In");
+      console.log(">> 113 goes here");
       navigation.navigate("HomeManager", { info: "yes" });
     }
-    navigation.navigate("HomeManager", { info: pass + ":" + phone });
+    // navigation.navigate("HomeManager", { info: pass + ":" + phone });
   };
 
   useEffect(() => {
@@ -114,15 +115,22 @@ export default function Login({ navigation, route }) {
         );
       });
   }, []);
+
   if (chose) {
-    return <Role role={role} setRole={setRole} navigation={navigation} phone={phone} name={name} />;
+    return <Role 
+              role={role} 
+              setRole={setRole} 
+              navigation={navigation} 
+              phone={phone} 
+              name={name} />;
   }
 
+  console.log(">> We return")
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "FFFFFF",
+        backgroundColor: "#FFFFFF",
         alignItems: "center",
       }}
     >
@@ -143,7 +151,7 @@ export default function Login({ navigation, route }) {
               height: 48,
               marginBottom: 5,
               backgroundColor: "#FFFFFF",
-              border: "5px solid #D5D5E1",
+              //border: "5px solid #D5D5E1",
               borderRadius: 10,
             }}
             containerStyle={styles.field}
@@ -192,7 +200,7 @@ export default function Login({ navigation, route }) {
               style={{
                 width: 70,
                 height: 22,
-                fontFtyle: "normal",
+                fontStyle: "normal",
                 fontWeight: "700",
                 fontSize: 18,
                 lineHeight: 22,
@@ -231,7 +239,7 @@ export default function Login({ navigation, route }) {
 const styles = StyleSheet.create({
   button: {
     width: 280,
-    color: "2F2D51",
+    color: "#2F2D51",
     height: 48,
     backgroundColor: "#2F2D51",
     fontSize: 18,
@@ -242,7 +250,7 @@ const styles = StyleSheet.create({
   },
   text: {
     // fontFamily: "Montserrat",
-    fontFtyle: "normal",
+    fontStyle: "normal",
     fontWeight: "700",
     fontSize: 28,
     lineHeight: 32,
@@ -259,7 +267,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "FFFFFF",
+    backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
   },

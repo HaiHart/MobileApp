@@ -5,6 +5,9 @@ import ProfielIcon from "../assets/Profile.png";
 import { Octicons } from "@expo/vector-icons";
 
 export default function HomeManager({ navigation, route }) {
+  const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
+  console.log(info)
+
   const onPressCreateMotel = () => {
     navigation.navigate("CreateMotel");
   };
@@ -42,7 +45,7 @@ export default function HomeManager({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    alignItems: "left",
+    alignItems: "flex-end",
     width: "100%",
     height: "100%",
     backgroundColor:"white"
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 30,
-    backgroundColor: "white",
+    backgroundColor: "#ffffff",
   },
   HeaderIcon: {
     flexDirection: "row",

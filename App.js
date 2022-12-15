@@ -44,6 +44,7 @@ const Logged = ({navigation, route}) => {
         },
         tabBarShowLabel: false,
         tabBarStyle: {
+
           height: 100,
           borderTopRightRadius: 35,
           borderTopLeftRadius: 35,
@@ -83,13 +84,13 @@ export default function App() {
             component={Register}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Home"
             component={Logged}
             options={{ headerShown: false }}
-          />
+          /> */}
           <Stack.Screen
-            name="HomeManager"
+            name="HomeManager"  
             component={HomeManager}
             options={{ headerShown: false }}
           />
