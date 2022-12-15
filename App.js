@@ -44,7 +44,7 @@ const Logged = ({navigation, route}) => {
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          height:100,
+          height:80,
           borderTopRightRadius:50,
           borderTopLeftRadius:50,
           borderColor:"#2F2D51"
@@ -54,11 +54,11 @@ const Logged = ({navigation, route}) => {
       <Tab.Screen 
         name="HomePage" 
         component={Home}
-        initialParams={{info:{...route.params.info}, navigation:navigation}}
+        // initialParams={{info:{...route.params.info}, navigation:navigation}}
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
-        component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        component={(role === "Renter" ? ServiceRenter : ServiceManager)}
       ></Tab.Screen>
       <Tab.Screen name="Feature" component={FeatureRenter}></Tab.Screen>
     </Tab.Navigator>
@@ -69,7 +69,28 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator 
+          initialRouteName="Login"
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              if (route.name === "HomePage") {
+                return <Foundation name="home" size={36} color="black" />;
+              } else if (route.name === "Service") {
+                return <AntDesign name="plussquare" size={64} color="black" />;
+              } else if (route.name === "Feature") {
+                return <Ionicons name="grid" size={36} color="black" />;
+              }
+            },
+            tabBarShowLabel: false,
+            tabBarStyle: {
+              height:80,
+              borderTopRightRadius:50,
+              borderTopLeftRadius:50,
+              borderColor:"#2F2D51"
+            }
+          })}
+          
+          >
           <Stack.Screen
             name="Login"
             component={Login}
@@ -80,13 +101,13 @@ export default function App() {
             component={Register}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Home"
             component={Logged}
             options={{ headerShown: false }}
-          />
+          /> */}
           <Stack.Screen
-            name="HomeManager"
+            name="HomeManager"  
             component={HomeManager}
             options={{ headerShown: false }}
           />
@@ -115,6 +136,8 @@ export default function App() {
             component={Motel}
             options={{ headerShown: false }}
           ></Tab.Screen>
+      <Stack.Screen name="Feature" component={FeatureRenter}></Stack.Screen>
+
           
         </Stack.Navigator>
       </NavigationContainer>

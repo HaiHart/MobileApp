@@ -56,7 +56,8 @@ export default function Register({ navigation, route }) {
               return
             }
             else{
-    setChose(true);
+              setChose(true);
+              console.log(">> Register: " + info)
               input[info.phone] = {name: info.name, pass:info.pass, email: info.email ? info.email:"",nickname:""}
             
               FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
@@ -131,16 +132,19 @@ export default function Register({ navigation, route }) {
 }
 
 export function Role({ role, setRole, navigation, name, phone }) {
+  console.log("Role, name, phone " + role + ", " + name + ", " + phone)
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "FFFFFF",
+        backgroundColor: "#FFFFFF",
         alignItems: "center",
       }}
     >
       <View>
-        <Image source={role_asset} style={styles.img} />
+        <Image 
+          source={role_asset} 
+          style={styles.img} />
       </View>
       <View
         style={{
@@ -174,7 +178,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           marginBottom: 20,
         }}
       >
-        <Box
+         <Box
           uri={renter}
           role={"Renter"}
           color={"#93D8F8"}
@@ -187,7 +191,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           color={"#FF97B5"}
           sel={role}
           setRole={setRole}
-        />
+        /> 
       </View>
       <TouchableOpacity
         style={{
@@ -200,7 +204,8 @@ export function Role({ role, setRole, navigation, name, phone }) {
           alignContent: "center",
         }}
         onPress={() => {
-          navigation.navigate("Home", {
+          console.log(name, phone, role)
+          navigation.navigate("HomeManager", {
             info: { name: name, phone: phone, role: role },
           });
         }}
@@ -209,7 +214,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           style={{
             width: 70,
             height: 22,
-            fontFtyle: "normal",
+            fontStyle: "normal",
             fontWeight: "700",
             fontSize: 18,
             lineHeight: 22,
@@ -244,6 +249,7 @@ function Box({ uri, role, color, sel, setRole }) {
 }
 
 function Filling({ info, setInfo, OnSubmit, navigation }) {
+  console.log("info " + info)
   const [cor, setCor] = useState("");
 
   return (
@@ -392,7 +398,7 @@ const styles = StyleSheet.create({
   },
   text: {
     // fontFamily: "Montserrat",
-    fontFtyle: "normal",
+    fontStyle: "normal",
     fontWeight: "700",
     fontSize: 28,
     lineHeight: 32,
@@ -445,7 +451,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     color: "#2F2D51",
-    backgroundColor:"#CCCCCC",
     textAlign: "center"
   },
   roleImg: {

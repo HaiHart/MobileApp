@@ -7,14 +7,16 @@ export const userSlice = createSlice({
                 name: "Nguyễn Văn An",
                 nickname: "An Nguyễn",
                 phonenumber: "0123456789",
-                email: "nguyenvanan@gmail.com"
+                email: "nguyenvanan@gmail.com",
+                role:"owner"
         }
     },
     reducers: {
         updateProfile: (state, action) => {
-            console.log("==================================")
-            console.log(action.payload)
             state.userinfo = action.payload;
+        },
+        updateRole: (state, action) => {
+            state.userinfo.role = action.payload;
         }
     }
 })
