@@ -25,7 +25,7 @@ export default function Login({ navigation, route }) {
       })
         .then(() => {
           console.log(phone);
-          navigation.navigate("Home", { info: "yes" });
+          navigation.navigate("HomeManager", { info: "yes" });
         })
         .catch(function (error) {
           console.log(
@@ -36,9 +36,9 @@ export default function Login({ navigation, route }) {
     }
     if (phone === "113" || pass == "113") {
       console.log("In");
-      navigation.navigate("Home", { info: "yes" });
+      navigation.navigate("HomeManager", { info: "yes" });
     }
-    navigation.navigate("Home", { info: pass + ":" + phone });
+    navigation.navigate("HomeManager", { info: pass + ":" + phone });
   };
 
   useEffect(() => {

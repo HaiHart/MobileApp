@@ -5,12 +5,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from "./Components/LogIn";
 import Home from "./Components/Home";
 import Register from "./Components/Register";
+import HomeManager from "./screens/HomeManager";
+import CreateMotel from "./screens/CreateMotel";
+import Motel from "./screens/Motel";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
+
   return (
    <NavigationContainer>
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      contentStyle: {
+        backgroundColor: '#fff',
+      }
+    }}>
       <Stack.Screen
         name="Login"
         component = {Login}
@@ -25,6 +33,22 @@ export default function App() {
         name="Home"
         component = {Home}
         options={{headerShown: false}}
+        
+      />
+      <Stack.Screen
+        name="HomeManager"
+        component={HomeManager}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CreateMotel"
+        component={CreateMotel}
+        // options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Motel"
+        component={Motel}
+        // options={{headerShown: false}}
       />
     </Stack.Navigator>
    </NavigationContainer>
