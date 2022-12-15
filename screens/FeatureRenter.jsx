@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import PostRoom from '../assets/Image.png'
-import Document from '../assets/Document.png'
 import Analyst from '../assets/Analytic.png'
-import PostRoomServiceModal from '../Components/PostRoomModal'
-import InvoiceServiceModal from '../Components/InvoiceModal'
 import SentReportModal from '../Components/SentReportModal'
+import AnalyticModal from '../Components/AnalyticModal'
+import ProfielIcon from "../assets/Profile.png";
+import { Octicons } from "@expo/vector-icons";
+
 
 const ServiceManager = () => {
-  const [modalSentReport, setModalPostRoom] = useState(false);
-  const [modalInvoice, setModalInvoice] = useState(false);
+  const [modalSentReport, setModalSentReport] = useState(false);
+  const [modalAnalytic, setModalAnalytic] = useState(false);
 
   return (
     <View style={styles.container}>
+      <View style={styles.HeaderIcon}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")} style={styles.avatar}>
+          <Image source={ProfielIcon}></Image>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Notification")} style={styles.bell}>
+          <Octicons name="bell-fill" size={30} color="#2F2D51" />
+        </TouchableOpacity>
+      </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
-          onPress={() => setModalPostRoom(true)}
+          onPress={() => setModalSentReport(true)}
           style={styles.item}
         >
           <Image source={Analyst}></Image>
@@ -24,23 +32,22 @@ const ServiceManager = () => {
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalInvoice(true)}
+          onPress={() => setModalAnalytic(true)}
         >
           <Image source={Analyst}></Image>
           <Text>Analytic</Text>
         </TouchableOpacity>
-
       </View>
       <SentReportModal
         isVisible={modalSentReport}
         onCancel={() => {
-          setModalPostRoom(false);
+          setModalSentReport(false);
         }}
       />
-      <InvoiceServiceModal
-        isVisible={modalInvoice}
+      <AnalyticModal
+        isVisible={modalAnalytic}
         onCancel={() => {
-          setModalInvoice(false);
+          setModalAnalytic(false);
         }}
       />
     </View>
@@ -48,6 +55,20 @@ const ServiceManager = () => {
 };
 
 const styles = StyleSheet.create({
+  headerText:{
+    fontSize:24,
+    fontFamily:"Montserrat",
+    color:"#2F2D51",
+    marginTop:50,
+
+  },
+  header:{
+    backgroundColor:"#fff",
+    width:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+
+  },
   container: {
     display: "flex",
     alignItems: "center",
@@ -71,7 +92,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     borderRadius: 8,
-    paddingVertical: 45,
+    paddingVertical: 25,
     paddingHorizontal: 25,
     width: "90%",
     marginVertical: 10,
@@ -82,6 +103,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  header: {
+    paddingTop: 30,
+    backgroundColor: "white",
+  },
+  HeaderIcon: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width:"100%",
+    marginHorizontal:5,
+    marginVertical:10,
+    marginTop:50,
+  },
+  avatar:{
+    marginLeft:20
+  },
+  bell:{
+    marginRight:40
+  }
 });
 
 export default ServiceManager;

@@ -13,7 +13,7 @@ import HomeIcon from "./assets/Home.png";
 import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
-import store from "./store/store";
+import store from './store/Store'
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from "./screens/FeatureRenter";
@@ -44,23 +44,25 @@ const Logged = ({navigation, route}) => {
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          height:80,
-          borderTopRightRadius:50,
-          borderTopLeftRadius:50,
-          borderColor:"#2F2D51"
-        }
+
+          height: 100,
+          borderTopRightRadius: 35,
+          borderTopLeftRadius: 35,
+          borderColor: "#2F2D51",
+        },
       })}
     >
       <Tab.Screen 
         name="HomePage" 
-        component={Home}
-        // initialParams={{info:{...route.params.info}, navigation:navigation}}
+        component={HomeManager}
+        options={{ headerShown: false }}
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
-        component={(role === "Renter" ? ServiceRenter : ServiceManager)}
+        component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        options={{ headerShown: false }}
       ></Tab.Screen>
-      <Tab.Screen name="Feature" component={FeatureRenter}></Tab.Screen>
+      <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
     </Tab.Navigator>
   );
 };
@@ -69,28 +71,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator 
+        <Stack.Navigator
           initialRouteName="Login"
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              if (route.name === "HomePage") {
-                return <Foundation name="home" size={36} color="black" />;
-              } else if (route.name === "Service") {
-                return <AntDesign name="plussquare" size={64} color="black" />;
-              } else if (route.name === "Feature") {
-                return <Ionicons name="grid" size={36} color="black" />;
-              }
-            },
-            tabBarShowLabel: false,
-            tabBarStyle: {
-              height:80,
-              borderTopRightRadius:50,
-              borderTopLeftRadius:50,
-              borderColor:"#2F2D51"
-            }
-          })}
-          
-          >
+        >
           <Stack.Screen
             name="Login"
             component={Login}
@@ -111,34 +94,31 @@ export default function App() {
             component={HomeManager}
             options={{ headerShown: false }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Notification"
             component={Notification}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="Profile"
             component={Profile}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="EditProfile"
             component={EditProfile}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="CreateMotel"
             component={CreateMotel}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="Motel"
             component={Motel}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-      <Stack.Screen name="Feature" component={FeatureRenter}></Stack.Screen>
-
-          
+          ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
