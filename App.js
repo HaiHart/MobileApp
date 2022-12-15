@@ -54,14 +54,14 @@ const Logged = ({navigation, route}) => {
       <Tab.Screen 
         name="HomePage" 
         component={HomeManager}
-        
+        options={{ headerShown: false }}
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}
         options={{ headerShown: false }}
       ></Tab.Screen>
-      <Tab.Screen name="Feature" component={FeatureRenter}></Tab.Screen>
+      <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
     </Tab.Navigator>
   );
 };
