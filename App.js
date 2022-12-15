@@ -9,6 +9,7 @@ import Register from "./Components/Register";
 import ServiceManager from "./pages/ServiceManager";
 import ServiceRenter from "./pages/ServiceRenter";
 import Plus from "./assets/Plus.png";
+import Notification from "./Components/Notification";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
