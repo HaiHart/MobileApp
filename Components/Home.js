@@ -1,12 +1,15 @@
 import React from "react";
-import { View,Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View,Text, StyleSheet, TouchableOpacity, BackHandler } from "react-native";
 
-export default function Home({navigation, route}) {
+export default function Home({navigation, info}) {
+    BackHandler.addEventListener('hardwareBackPress',()=>{
+        return true
+    })
     return(
-        <View style={styles.container} >
-               <Text>
-               Home
-                </Text> 
+        <View>
+            <Text>
+                {JSON.stringify(info)} Home
+            </Text>
         </View>
     )
 }

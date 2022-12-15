@@ -49,12 +49,17 @@ export default function Register({ navigation, route }) {
           .then((answer) => {
             console.log(answer);
             const input = JSON.parse(answer);
-            if (input[info.phone]){
+            if (input[info.phone] !== undefined){
+              
               alert("phone is registerd")
+              setChose(false)
               return
             }
-            input[info.phone] = {name: info.name, pass:info.pass, email: info.email}
-            FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
+            else{
+    setChose(true);
+              input[info.phone] = {name: info.name, pass:info.pass, email: info.email ? info.email:"",nickname:""}
+            
+              FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
               encoding: FileSystem.EncodingType.UTF8,
             })
               .then(() => {
@@ -65,7 +70,7 @@ export default function Register({ navigation, route }) {
                   "There has been a problem with your fetch operation: " +
                     error.message
                 );
-              });
+              });}
 
           })
           .catch(function (error) {
@@ -89,11 +94,11 @@ export default function Register({ navigation, route }) {
                 error.message
             );
           });
+          setChose(true);
 
       }
     })
 
-    setChose(true);
   };
 
   BackHandler.addEventListener("hardwareBackPress", function () {
@@ -437,9 +442,11 @@ const styles = StyleSheet.create({
     // fontFamily: 'Montserrat',
     fontStyle: "normal",
     fontWeight: "600",
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 22,
     color: "#2F2D51",
+    backgroundColor:"#CCCCCC",
+    textAlign: "center"
   },
   roleImg: {
     resizeMode: "stretch",
