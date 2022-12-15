@@ -2,12 +2,14 @@ import React from "react";
 import { View,Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function Home({navigation, route}) {
+    
+    
     return(
-        <View style={styles.container} >
+        <TouchableOpacity style={styles.container} >
                <Text>
                Home
                 </Text> 
-        </View>
+        </TouchableOpacity>
     )
 }
 

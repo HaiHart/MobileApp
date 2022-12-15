@@ -37,6 +37,7 @@ const Logged = () => {
 };
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -57,6 +58,41 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+
+    // <Provider store={store}>
+    //   <NavigationContainer>
+    //     <Stack.Navigator
+    //       initialRouteName="Login"
+    //       >
+    //       <Stack.Screen
+    //           name="Home"
+    //           component = {Home}
+    //           options={{headerShown: false}}
+    //           initialParams={{ info: true }}
+    //         />
+    //       <Stack.Screen
+    //         name="Profile"
+    //         component = {Profile}
+    //         options={{headerShown: false}}
+    //       />
+    //       <Stack.Screen
+    //           name="EditProfile"
+    //           component = {EditProfile}
+    //           options={{headerShown: false}}
+    //         />
+    //       <Stack.Screen
+    //         name="Login"
+    //         component = {Login}
+    //         options={{headerShown: false}}
+    //       />
+    //       <Stack.Screen
+    //         name="Register"
+    //         component = {Register}
+    //         options={{headerShown: false}}
+    //       />
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </Provider>
   );
 }
 
