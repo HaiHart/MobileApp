@@ -42,17 +42,22 @@ const Logged = () => {
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          height:100,
-          borderTopRightRadius:50,
-          borderTopLeftRadius:50,
-          borderColor:"#2F2D51"
-        }
+          height: 100,
+          borderTopRightRadius: 35,
+          borderTopLeftRadius: 35,
+          borderColor: "#2F2D51",
+        },
       })}
     >
-      <Tab.Screen name="HomePage" component={HomeManager}></Tab.Screen>
+      <Tab.Screen
+        name="HomePage"
+        component={HomeManager}
+        options={{ headerShown: false }}
+      ></Tab.Screen>
       <Tab.Screen
         name="Service"
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        options={{ headerShown: false }}
       ></Tab.Screen>
       <Tab.Screen name="Feature" component={FeatureRenter}></Tab.Screen>
     </Tab.Navigator>
@@ -63,7 +68,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator
+          initialRouteName="Login"
+        >
           <Stack.Screen
             name="Login"
             component={Login}
@@ -84,32 +91,31 @@ export default function App() {
             component={HomeManager}
             options={{ headerShown: false }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Notification"
             component={Notification}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="Profile"
             component={Profile}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="EditProfile"
             component={EditProfile}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="CreateMotel"
             component={CreateMotel}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          <Tab.Screen
+          ></Stack.Screen>
+          <Stack.Screen
             name="Motel"
             component={Motel}
             options={{ headerShown: false }}
-          ></Tab.Screen>
-          
+          ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

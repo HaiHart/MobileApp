@@ -14,6 +14,11 @@ const ServiceRenter = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>
+        Service
+        </Text>
+      </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
           onPress={() => setModalCleaning(true)}
@@ -62,11 +67,26 @@ const ServiceRenter = () => {
 };
 
 const styles = StyleSheet.create({
+  headerText:{
+    fontSize:24,
+    fontFamily:"Montserrat",
+    color:"#2F2D51",
+    marginTop:50,
+
+  },
+  header:{
+    backgroundColor:"#fff",
+    width:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+
+  },
   container: {
     display: "flex",
     alignItems: "center",
     width: "100%",
     height: "100%",
+    backgroundColor:"white"
   },
   box: {
     display: "flex",
@@ -85,7 +105,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     borderRadius: 8,
-    paddingVertical: 45,
+    paddingVertical: 25,
     paddingHorizontal: 25,
     width: "90%",
     marginVertical: 10,
@@ -93,7 +113,7 @@ const styles = StyleSheet.create({
   shadowProp: {
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 3,
   },
 });
