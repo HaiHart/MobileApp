@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -8,9 +7,6 @@ import Home from "./Components/Home";
 import Register from "./Components/Register";
 import ServiceManager from "./screens/ServiceManager";
 import ServiceRenter from "./screens/ServiceRenter";
-import PlusIcon from "./assets/Plus.png";
-import HomeIcon from "./assets/Home.png";
-import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
 import store from './store/Store'
@@ -26,8 +22,6 @@ import { Foundation, AntDesign, Ionicons} from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
-var role = "Renter";
 
 const Logged = ({navigation, route}) => {
   return (
@@ -58,10 +52,10 @@ const Logged = ({navigation, route}) => {
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
-        component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        component={ServiceManager}
         options={{ headerShown: false }}
       ></Tab.Screen>
-      <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
+      <Tab.Screen name="Feature" component={FeatureManager} options={{ headerShown: false }}></Tab.Screen>
     </Tab.Navigator>
   );
 };

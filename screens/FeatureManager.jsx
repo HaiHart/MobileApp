@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import PostRoom from '../assets/Image.png'
 import Document from '../assets/Document.png'
 import PostRoomServiceModal from '../Components/PostRoomModal'
-import InvoiceServiceModal from '../Components/InvoiceModal'
+import InvoiceServiceModal from '../Components/InvoiceModal';
+import ProfielIcon from "../assets/Profile.png";
+import { Octicons } from "@expo/vector-icons";
 
 const ServiceManager = () => {
   const [modalPostRoom, setModalPostRoom] = useState(false);
@@ -11,6 +13,14 @@ const ServiceManager = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.HeaderIcon}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")} style={styles.avatar}>
+          <Image source={ProfielIcon}></Image>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Notification")} style={styles.bell}>
+          <Octicons name="bell-fill" size={30} color="#2F2D51" />
+        </TouchableOpacity>
+      </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
           onPress={() => setModalPostRoom(true)}
@@ -80,6 +90,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  HeaderIcon: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width:"100%",
+    marginHorizontal:5,
+    marginVertical:10,
+    marginTop:50,
+  },
+  avatar:{
+    marginLeft:20
+  },
+  bell:{
+    marginRight:40
+  }
 });
 
 export default ServiceManager;
