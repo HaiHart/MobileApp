@@ -21,6 +21,8 @@ import FeatureManager from "./screens/FeatureManager";
 import HomeManager from "./screens/HomeManager";
 import CreateMotel from "./screens/CreateMotel";
 import Motel from "./screens/Motel";
+import { Foundation, AntDesign, Ionicons} from '@expo/vector-icons'; 
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,11 +35,11 @@ const Logged = ({navigation, route}) => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "HomePage") {
-            return <Image source={HomeIcon} />;
+            return <Foundation name="home" size={36} color="black" />;
           } else if (route.name === "Service") {
-            return <Image source={PlusIcon} />;
+            return <AntDesign name="plussquare" size={64} color="black" />;
           } else if (route.name === "Feature") {
-            return <Image source={FeatureICon} />;
+            return <Ionicons name="grid" size={36} color="black" />;
           }
         },
         tabBarShowLabel: false,
