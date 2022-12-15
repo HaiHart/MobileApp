@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image, StatusBar} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, StatusBar} from "react-native";
 import { CreateMotelItem, MotelListItem } from "../Components/MotelListItem";
 import ProfielIcon from "../assets/Profile.png";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Octicons } from "@expo/vector-icons";
 
 export default function HomeManager({ navigation, route }) {
@@ -50,6 +49,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingTop: StatusBar.currentHeight,
     height: "100%",
+    backgroundColor:"white"
   },
   background: {
     backgroundColor: "#fff",
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     width:"100%",
     marginHorizontal:5,
     marginVertical:10,
+    marginTop:50,
   },
   avatar:{
     marginLeft:20
