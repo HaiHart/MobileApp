@@ -1,11 +1,48 @@
 import { StyleSheet, Text, SafeAreaView, 
-    SafeAreaSafeAreaView, StatusBar, View, Image} from 'react-native'
-import React from 'react'
+    TouchableOpacity, StatusBar, View, Image} from 'react-native'
+import {useState, useEffect} from 'react'
 import { useFonts } from 'expo-font';
 import { AntDesign, Ionicons, FontAwesome5} from '@expo/vector-icons';
+import { useSelector } from 'react-redux'
 
+export default function Profile({ navigation, route}) {
+    console.log(">> Profile screen");
+    
+    const [isReturn, setIsReturn] = useState(false);
+    const [isEditProfile, setIsEditProfile] = useState(false);
+    const [isSetting, setIsSetting] = useState(false);
+    const [isSignout, setIsSignout] = useState(false);
+    
+   
 
-export default function Profile() {
+    const userinfo = useSelector((state) =>
+        state.user.userinfo
+    )
+
+    useEffect(() => {
+        console.log("isReturn " + isReturn);
+        console.log("isEditProfile " + isEditProfile);
+        console.log("isSetting " + isSetting);
+        console.log("isSignout " + isSignout);
+
+        console.log(">> user name " + userinfo.name + 
+                ", nickname " + userinfo.nickname + 
+                ", phonenumber " + userinfo.phonenumber + 
+                ", email " + userinfo.email);
+        
+
+        if (isReturn) {
+            setIsReturn(false);
+            navigation.navigate("Home", { info: "yes" });
+        }
+        if (isEditProfile) {
+            setIsEditProfile(false);
+            navigation.navigate(
+                "EditProfile", 
+                {userinfo: userinfo});
+        }
+    },[isReturn, isEditProfile, userinfo]);
+
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
     });
@@ -17,13 +54,17 @@ export default function Profile() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={header_styles.container}>
-                <AntDesign 
-                    name="left" size={24} color="black" 
-                    style={header_styles.icon_back}/>
+                <TouchableOpacity
+                    onPress={() => setIsReturn(true)}
+                    style={header_styles.icon_back}>
+                    <AntDesign name="left" size={24} color="black"/>
+                </TouchableOpacity>
                 <Text style={header_styles.title} >Profile</Text>
-                <Ionicons 
-                    name="pencil" size={24} color="black" 
-                    style={header_styles.icon_edit}/>
+                <TouchableOpacity
+                    onPress={() => setIsEditProfile(true)}
+                    style={header_styles.icon_edit}>
+                    <Ionicons name="pencil" size={24} color="black" />
+                </TouchableOpacity>
             </View>
             <View style={logo_styles.container}>
                 <Image
@@ -36,12 +77,12 @@ export default function Profile() {
                     <Text
                         style={logo_styles.name}
                     >
-                        Nguyễn Văn An
+                        {userinfo.name}
                     </Text>
                     <Text
                         style={logo_styles.nick_name}
                     >
-                        An Nguyễn
+                        {userinfo.nickname}
                     </Text>
                 </View>
             </View>
@@ -52,7 +93,7 @@ export default function Profile() {
                     size={16} 
                     color="black" />
                 <Text style={info_row_styles.text}>
-                    0123456789
+                    {userinfo.phonenumber}
                 </Text>
             </View>
             <View style={info_row_styles.container}>
@@ -60,11 +101,13 @@ export default function Profile() {
                     style={info_row_styles.icon}
                     name="mail" size={16} color="black" />
                 <Text style={info_row_styles.text}>
-                    0123456789
+                    {userinfo.email}
                 </Text>
             </View>
             <View elevation={5} style={button_styles.container}>
-                    <View style={button_styles.row_container}>
+                    <TouchableOpacity 
+                        onPress={() => setIsSetting(true)}
+                        style={button_styles.row_container}>
                         <View style={button_styles.icon}>
                             <Ionicons
                                 name="md-settings-sharp" 
@@ -80,8 +123,10 @@ export default function Profile() {
                             name="right" 
                             size={20} 
                             color="black" />
-                    </View>
-                    <View style={button_styles.row_container}>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => setIsSignout(true)}
+                        style={button_styles.row_container}>
                         <View style={button_styles.icon}>
                             <FontAwesome5 
                                 name="door-open"
@@ -97,7 +142,7 @@ export default function Profile() {
                             name="right" 
                             size={20} 
                             color="black" />
-                    </View>
+                    </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
@@ -107,7 +152,7 @@ const styles = StyleSheet.create({
     container: {
       paddingTop: StatusBar.currentHeight,
       backgroundColor:'#ffffff',
-      flex:1
+      flex:1,
     },
   });
 
@@ -115,9 +160,10 @@ const header_styles = StyleSheet.create({
     container: {
         marginVertical:15.5,
         width:'100%',
-        height:30,
+        height:60,
         alignItems:"center",
-        flexDirection:"row"
+        flexDirection:"row",
+        backgroundColor:"#ffffff"
     },
     title: {
         fontSize: 24,
@@ -128,12 +174,18 @@ const header_styles = StyleSheet.create({
     },
     icon_back: {
         position:"absolute",
-        marginStart:24
+        height: "100%",
+        width: 80,
+        justifyContent:'center',
+        alignItems: 'center'
     },
     icon_edit: {
+        end:0,
         position:"absolute",
-        marginEnd:24,
-        end:0
+        height: "100%",
+        width: 80,
+        justifyContent:'center',
+        alignItems: 'center'
     }
 })
 

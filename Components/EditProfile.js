@@ -1,15 +1,41 @@
 import { StyleSheet, Text, SafeAreaView, 
-    StatusBar, View, TextInput} from 'react-native'
-import {useState} from 'react'
+    StatusBar, View, TextInput, Button, TouchableOpacity} from 'react-native'
+import {useEffect, useState} from 'react'
 import { useFonts } from 'expo-font';
 import { AntDesign, Ionicons, FontAwesome5} from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux'
+import { updateProfile } from '../store/users/userSlices';
 
+export default function EditProfile({ navigation, route}) {
+    console.log(">> Edit profile screen");
+    console.log(updateProfile)
 
-export default function EditProfile() {
+    const userinfo = useSelector((state) =>
+        state.user.userinfo
+    )
+    const dispatch = useDispatch()
 
-    const [name, onChangeName] = useState("Name");
-    const [number, onChangeNumber] = useState(null);
-    const [email, onChangeEmail] = useState("Email");
+    const [name, onChangeName] = useState(userinfo.name);
+    const [nickname, onChangeNickName] = useState(userinfo.nickname);
+    const [number, onChangeNumber] = useState(userinfo.phonenumber);
+    const [email, onChangeEmail] = useState(userinfo.email);
+    const [onSubmit, handleOnSubmit] = useState(false);
+
+    useEffect(() => {
+        if (onSubmit) {
+            dispatch(updateProfile(
+                {
+                    name: name,
+                    nickname: nickname,
+                    phonenumber: number,
+                    email: email
+                }
+            ))
+            navigation.navigate({
+                name: "Profile", 
+            });
+        }
+    },[onSubmit]);
 
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
@@ -33,8 +59,18 @@ export default function EditProfile() {
                 </Text>
                 <TextInput
                     style={item_styles.text_input}
-                    onChangeText={onChangeName}
+                    onChangeText={(_name) => onChangeName(_name)}
                     value={name}
+                />
+            </View>
+            <View style={item_styles.container}>
+                <Text style={item_styles.text}>
+                    Nick name
+                </Text>
+                <TextInput
+                    style={item_styles.text_input}
+                    onChangeText={onChangeNickName}
+                    value={nickname}
                 />
             </View>
             <View style={item_styles.container}>
@@ -54,6 +90,14 @@ export default function EditProfile() {
                     value={email}
                 />
             </View>
+            <View style={item_styles.button_container}>
+                <TouchableOpacity
+                    onPress={() => handleOnSubmit(true)}
+                    style={item_styles.button}
+                >
+                    <Text>SAVE</Text>
+                </TouchableOpacity>
+            </View>
 
         </SafeAreaView>
     )
@@ -63,7 +107,9 @@ const styles = StyleSheet.create({
     container: {
       paddingTop: StatusBar.currentHeight,
       backgroundColor:'#ffffff',
-      flex:1
+      flex:1,
+      height: "100%",
+      flexDirection: 'column',
     },
   });
 
@@ -73,7 +119,9 @@ const header_styles = StyleSheet.create({
         width:'100%',
         height:30,
         alignItems:"center",
-        flexDirection:"row"
+        flexDirection:"row",
+        alignItems:'flex-start',
+        width:'100%'
     },
     title: {
         fontSize: 24,
@@ -97,7 +145,7 @@ const item_styles = StyleSheet.create({
     container: {
       backgroundColor:'#ffffff',
       margin: 15,
-      flexDirection:'column'
+      flexDirection:'column',
     },
     text: {
         marginBottom:15,
@@ -114,5 +162,26 @@ const item_styles = StyleSheet.create({
         fontWeight:'400',
         fontFamily:'Montserrat',
         opacity: 0.5
+    },
+
+    button_container: {
+        marginBottom:26,
+        marginTop:26,
+        paddingLeft: 45,
+        paddingRight: 45,
+        position: "absolute",
+        bottom: 0,
+        width: "100%",
+    },
+    button: {
+        backgroundColor: "#93D8F8",
+        fontWeight:'600',
+        fontFamily: 'Montserrat',
+        height:48,
+        width: "100%",
+        justifyContent:'center',
+        alignItems:'center',
+        color:"#2F2D51",
+        borderRadius:10
     }
   });

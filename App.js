@@ -7,39 +7,49 @@ import Home from "./Components/Home";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
 import EditProfile from "./Components/EditProfile";
+import store from './store/store';
+import { Provider } from 'react-redux'
+
 
 const Stack = createNativeStackNavigator();
+
 export default function App() {
+
   return (
-   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-          name="EditProfile"
-          component = {EditProfile}
-          options={{headerShown: false}}
-        />
-      {/* <Stack.Screen
-        name="Profile"
-        component = {Profile}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="Login"
-        component = {Login}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Register"
-        component = {Register}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Home"
-        component = {Home}
-        options={{headerShown: false}}
-      /> */}
-    </Stack.Navigator>
-   </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          >
+          <Stack.Screen
+              name="Home"
+              component = {Home}
+              options={{headerShown: false}}
+              initialParams={{ info: true }}
+            />
+          <Stack.Screen
+            name="Profile"
+            component = {Profile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name="EditProfile"
+              component = {EditProfile}
+              options={{headerShown: false}}
+            />
+          <Stack.Screen
+            name="Login"
+            component = {Login}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Register"
+            component = {Register}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
