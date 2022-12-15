@@ -6,10 +6,13 @@ import PostRoomServiceModal from '../Components/PostRoomModal'
 import InvoiceServiceModal from '../Components/InvoiceModal';
 import ProfielIcon from "../assets/Profile.png";
 import { Octicons } from "@expo/vector-icons";
+import AnalyticIcon from '../assets/Analytic.png'
+import AnalyticModal from "../Components/AnalyticModal";
+import SentNotificationModal from '../Components/SentNotificationModal'
 
 const ServiceManager = () => {
-  const [modalPostRoom, setModalPostRoom] = useState(false);
-  const [modalInvoice, setModalInvoice] = useState(false);
+  const [modalAnalytic, setModalAnalytic] = useState(false);
+  const [modalSentNoti, setModalSentNoti] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -23,32 +26,32 @@ const ServiceManager = () => {
       </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
-          onPress={() => setModalPostRoom(true)}
+          onPress={() => setModalAnalytic(true)}
           style={styles.item}
         >
-          <Image source={PostRoom}></Image>
-          <Text>Post Room</Text>
+          <Image source={AnalyticIcon}></Image>
+          <Text>Analytic</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalInvoice(true)}
+          onPress={() => setModalSentNoti(true)}
         >
           <Image source={Document}></Image>
-          <Text>Create Invoice</Text>
+          <Text>Sent Notification</Text>
         </TouchableOpacity>
 
       </View>
-      <PostRoomServiceModal
-        isVisible={modalPostRoom}
+      <AnalyticModal
+        isVisible={modalAnalytic}
         onCancel={() => {
-          setModalPostRoom(false);
+          setModalAnalytic(false);
         }}
       />
-      <InvoiceServiceModal
-        isVisible={modalInvoice}
+      <SentNotificationModal
+        isVisible={modalSentNoti}
         onCancel={() => {
-          setModalInvoice(false);
+          setModalSentNoti(false);
         }}
       />
     </View>
@@ -61,6 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
+    backgroundColor:"white"
   },
   box: {
     display: "flex",
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     borderRadius: 8,
-    paddingVertical: 45,
+    paddingVertical: 25,
     paddingHorizontal: 25,
     width: "90%",
     marginVertical: 10,
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
   shadowProp: {
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 3,
   },
   HeaderIcon: {
