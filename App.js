@@ -13,7 +13,7 @@ import HomeIcon from "./assets/Home.png";
 import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
-import store from "./store/Store";
+import store from "./store/store";
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from "./screens/FeatureRenter";
@@ -21,23 +21,25 @@ import FeatureManager from "./screens/FeatureManager";
 import HomeManager from "./screens/HomeManager";
 import CreateMotel from "./screens/CreateMotel";
 import Motel from "./screens/Motel";
+import { Foundation, AntDesign, Ionicons} from '@expo/vector-icons'; 
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 var role = "Renter";
 
-const Logged = () => {
+const Logged = ({navigation, route}) => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "HomePage") {
-            return <Image source={HomeIcon} />;
+            return <Foundation name="home" size={36} color="black" />;
           } else if (route.name === "Service") {
-            return <Image source={PlusIcon} />;
+            return <AntDesign name="plussquare" size={64} color="black" />;
           } else if (route.name === "Feature") {
-            return <Image source={FeatureICon} />;
+            return <Ionicons name="grid" size={36} color="black" />;
           }
         },
         tabBarShowLabel: false,
@@ -49,7 +51,11 @@ const Logged = () => {
         }
       })}
     >
-      <Tab.Screen name="HomePage" component={HomeManager}></Tab.Screen>
+      <Tab.Screen 
+        name="HomePage" 
+        component={Home}
+        initialParams={{info:{...route.params.info}, navigation:navigation}}
+        ></Tab.Screen>
       <Tab.Screen
         name="Service"
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}
