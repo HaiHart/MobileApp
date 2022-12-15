@@ -2,11 +2,14 @@ import React from "react";
 import { View,Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function Home({navigation, route}) {
+    BackHandler.addEventListener('hardwareBackPress',()=>{
+        return true
+    })
     return(
-        <View style={styles.container} >
-               <Text>
-               Home
-                </Text> 
+        <View>
+            <Text>
+                {JSON.stringify ({...route.params.info})} Home
+            </Text>
         </View>
     )
 }

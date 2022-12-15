@@ -6,15 +6,27 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  BackHandler
 } from "react-native";
 import CheckBox from "expo-checkbox";
 import * as FileSystem from "expo-file-system";
+import { Role } from "./Register";
 import PhoneInput from "react-native-phone-input";
 
 export default function Login({ navigation, route }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [name, setName] = useState("")
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
+  const [role, setRole] = useState("");
+  const [chose, setChose] = useState(false);
+
+  BackHandler.addEventListener("hardwareBackPress", function () {
+    if (chose) {
+      setChose(false);
+      return true;
+    }
+  });
 
   const OnSubmit = () => {
     if (toggleCheckBox) {
@@ -25,7 +37,6 @@ export default function Login({ navigation, route }) {
       })
         .then(() => {
           console.log(phone);
-          navigation.navigate("Home", { info: "yes" });
         })
         .catch(function (error) {
           console.log(
@@ -34,11 +45,38 @@ export default function Login({ navigation, route }) {
           );
         });
     }
-    if (phone === "113" || pass == "113") {
-      console.log("In");
-      navigation.navigate("Home", { info: "yes" });
-    }
-    navigation.navigate("Home", { info: pass + ":" + phone });
+
+    let fileUri = FileSystem.documentDirectory + "Account.txt";
+    FileSystem.getInfoAsync(fileUri).then((tmp) => {
+      if (tmp.exists) {
+        console.log(tmp);
+        FileSystem.readAsStringAsync(fileUri, {
+          encoding: FileSystem.EncodingType.UTF8,
+        })
+          .then((answer) => {
+            console.log(answer);
+            const input = JSON.parse(answer);
+            if (input[phone]){
+              if (input[phone]["pass"] === pass){
+                setName(input[phone][name])
+                setChose(true)
+                return
+              }else{
+                alert("wrong password")
+              }
+            }else{
+              alert("No phone number")
+            }
+            
+          })
+          .catch(function (error) {
+            console.log(
+              "There has been a problem with your fetch operation: " +
+                error.message
+            );
+          });
+        }
+      })
   };
 
   useEffect(() => {
@@ -70,6 +108,9 @@ export default function Login({ navigation, route }) {
         );
       });
   }, []);
+  if (chose) {
+    return <Role role={role} setRole={setRole} navigation={navigation} phone={phone} name={name} />;
+  }
 
   return (
     <View
