@@ -13,7 +13,7 @@ import HomeIcon from "./assets/Home.png";
 import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
-import store from './store/Store'
+import store from './store/store'
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from "./screens/FeatureRenter";

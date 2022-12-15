@@ -38,7 +38,7 @@ const Item = ({ title }) => (
   </View>
 );
 
-export default function Notification() {
+export default function Notification({navigation, route}) {
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
     });
