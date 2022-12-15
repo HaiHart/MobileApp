@@ -13,7 +13,7 @@ import HomeIcon from "./assets/Home.png";
 import FeatureICon from './assets/Category.png'
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
-import store from "./store/Store";
+import store from "./store/store";
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from './screens/FeatureRenter';
@@ -24,7 +24,7 @@ const Tab = createBottomTabNavigator();
 
 var role = "Renter";
 
-const Logged = () => {
+const Logged = ({navigation, route}) => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -39,7 +39,11 @@ const Logged = () => {
         },
       })}
     >
-      <Tab.Screen name="HomePage" component={Home}></Tab.Screen>
+      <Tab.Screen 
+        name="HomePage" 
+        component={Home}
+        initialParams={{info:{...route.params.info}, navigation:navigation}}
+        ></Tab.Screen>
       <Tab.Screen
         name="Service"
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}

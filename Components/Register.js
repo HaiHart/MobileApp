@@ -49,11 +49,14 @@ export default function Register({ navigation, route }) {
           .then((answer) => {
             console.log(answer);
             const input = JSON.parse(answer);
-            if (input[info.phone]){
+            if (input[info.phone] !== undefined){
+              
               alert("phone is registerd")
+              setChose(false)
               return
             }
-            input[info.phone] = {name: info.name, pass:info.pass, email: info.email}
+            else{
+              input[info.phone] = {name: info.name, pass:info.pass, email: info.email ? info.email:"",nickname:""}
             FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
               encoding: FileSystem.EncodingType.UTF8,
             })
@@ -65,7 +68,7 @@ export default function Register({ navigation, route }) {
                   "There has been a problem with your fetch operation: " +
                     error.message
                 );
-              });
+              });}
 
           })
           .catch(function (error) {
