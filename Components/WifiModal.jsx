@@ -9,7 +9,6 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { Formik } from "formik";
-// import { CheckBox } from "react-native-elements";
 import Checkbox from "expo-checkbox";
 
 const WifiServiceMdodal = ({ isVisible, onCancel }) => {
