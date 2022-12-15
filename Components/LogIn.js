@@ -6,13 +6,16 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  BackHandler
 } from "react-native";
 import CheckBox from "expo-checkbox";
 import * as FileSystem from "expo-file-system";
+import { Role } from "./Register";
 import PhoneInput from "react-native-phone-input";
 
 export default function Login({ navigation, route }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [name, setName] = useState("")
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
   const [role, setRole] = useState("");
@@ -43,7 +46,37 @@ export default function Login({ navigation, route }) {
         });
     }
 
-    setChose(true);
+    let fileUri = FileSystem.documentDirectory + "Account.txt";
+    FileSystem.getInfoAsync(fileUri).then((tmp) => {
+      if (tmp.exists) {
+        console.log(tmp);
+        FileSystem.readAsStringAsync(fileUri, {
+          encoding: FileSystem.EncodingType.UTF8,
+        })
+          .then((answer) => {
+            console.log(answer);
+            const input = JSON.parse(answer);
+            if (input[phone]){
+              if (input[phone]["pass"] === pass){
+                setName(input[phone][name])
+                setChose(true)
+                return
+              }else{
+                alert("wrong password")
+              }
+            }else{
+              alert("No phone number")
+            }
+            
+          })
+          .catch(function (error) {
+            console.log(
+              "There has been a problem with your fetch operation: " +
+                error.message
+            );
+          });
+        }
+      })
   };
 
   useEffect(() => {
@@ -76,7 +109,7 @@ export default function Login({ navigation, route }) {
       });
   }, []);
   if (chose) {
-    return <Role role={role} setRole={setRole} navigation={navigation} phone={phone} />;
+    return <Role role={role} setRole={setRole} navigation={navigation} phone={phone} name={name} />;
   }
 
   return (

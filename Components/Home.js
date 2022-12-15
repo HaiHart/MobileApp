@@ -5,7 +5,7 @@ export default function Home({navigation, route}) {
     return(
         <View>
             <Text>
-                {route.params.info} Home
+                {JSON.stringify ({...route.params.info})} Home
             </Text>
         </View>
     )

@@ -39,18 +39,80 @@ export default function Register({ navigation, route }) {
     ) {
       return;
     }
+    let fileUri = FileSystem.documentDirectory + "Account.txt";
+    FileSystem.getInfoAsync(fileUri).then((tmp) => {
+      if (tmp.exists) {
+        console.log(tmp);
+        FileSystem.readAsStringAsync(fileUri, {
+          encoding: FileSystem.EncodingType.UTF8,
+        })
+          .then((answer) => {
+            console.log(answer);
+            const input = JSON.parse(answer);
+            if (input[info.phone]){
+              alert("phone is registerd")
+              return
+            }
+            input[info.phone] = {name: info.name, pass:info.pass, email: info.email}
+            FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
+              encoding: FileSystem.EncodingType.UTF8,
+            })
+              .then(() => {
+                console.log(phone);
+              })
+              .catch(function (error) {
+                console.log(
+                  "There has been a problem with your fetch operation: " +
+                    error.message
+                );
+              });
+
+          })
+          .catch(function (error) {
+            console.log(
+              "There has been a problem with your fetch operation: " +
+                error.message
+            );
+          });
+      }else{
+        const input={}
+        input[info.phone]={name: info.name, pass:info.pass, email: info.email}
+        FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
+          encoding: FileSystem.EncodingType.UTF8,
+        })
+          .then(() => {
+            console.log(phone);
+          })
+          .catch(function (error) {
+            console.log(
+              "There has been a problem with your fetch operation: " +
+                error.message
+            );
+          });
+
+      }
+    })
+
     setChose(true);
   };
 
   BackHandler.addEventListener("hardwareBackPress", function () {
     if (chose) {
       setChose(false);
-      return
+      return;
     }
   });
 
   if (chose) {
-    return <Role role={role} setRole={setRole} navigation={navigation} name={info.name} phone={info.phone} />;
+    return (
+      <Role
+        role={role}
+        setRole={setRole}
+        navigation={navigation}
+        name={info.name}
+        phone={info.phone}
+      />
+    );
   }
 
   return (
@@ -133,7 +195,9 @@ export function Role({ role, setRole, navigation, name, phone }) {
           alignContent: "center",
         }}
         onPress={() => {
-          navigation.navigate("Home", { info:{name:name, phone:phone, role:role}  });
+          navigation.navigate("Home", {
+            info: { name: name, phone: phone, role: role },
+          });
         }}
       >
         <Text
@@ -257,7 +321,7 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
               }}
             >
               <CheckBox
-              value={info.consent}
+                value={info.consent}
                 onValueChange={(e) => {
                   setInfo((pre) => {
                     return { ...pre, consent: e };
@@ -333,7 +397,7 @@ const styles = StyleSheet.create({
     boxSizing: "border-box",
     width: 300,
     height: 48,
-    marginBottom:8,
+    marginBottom: 8,
     backgroundColor: "#FFFFFF",
     border: "5px solid #D5D5E1",
     borderRadius: 10,
