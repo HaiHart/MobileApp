@@ -10,6 +10,7 @@ import {
   BackHandler,
 } from "react-native";
 import CheckBox from "expo-checkbox";
+import * as FileSystem from "expo-file-system";
 import ReactNativePhoneInput from "react-native-phone-input";
 
 const role_asset = require("../assets/role_asset.png");
@@ -49,7 +50,7 @@ export default function Register({ navigation, route }) {
   });
 
   if (chose) {
-    return <Role role={role} setRole={setRole} navigation={navigation} />;
+    return <Role role={role} setRole={setRole} navigation={navigation} name={info.name} phone={info.phone} />;
   }
 
   return (
@@ -62,7 +63,7 @@ export default function Register({ navigation, route }) {
   );
 }
 
-function Role({ role, setRole, navigation }) {
+export function Role({ role, setRole, navigation, name, phone }) {
   return (
     <View
       style={{
@@ -132,7 +133,7 @@ function Role({ role, setRole, navigation }) {
           alignContent: "center",
         }}
         onPress={() => {
-          navigation.navigate("Home", { info: "newly registered" });
+          navigation.navigate("Home", { info:{name:name, phone:phone, role:role}  });
         }}
       >
         <Text

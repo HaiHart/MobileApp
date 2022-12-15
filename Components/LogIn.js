@@ -15,6 +15,15 @@ export default function Login({ navigation, route }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
+  const [role, setRole] = useState("");
+  const [chose, setChose] = useState(false);
+
+  BackHandler.addEventListener("hardwareBackPress", function () {
+    if (chose) {
+      setChose(false);
+      return;
+    }
+  });
 
   const OnSubmit = () => {
     if (toggleCheckBox) {
@@ -25,7 +34,6 @@ export default function Login({ navigation, route }) {
       })
         .then(() => {
           console.log(phone);
-          navigation.navigate("Home", { info: "yes" });
         })
         .catch(function (error) {
           console.log(
@@ -34,11 +42,8 @@ export default function Login({ navigation, route }) {
           );
         });
     }
-    if (phone === "113" || pass == "113") {
-      console.log("In");
-      navigation.navigate("Home", { info: "yes" });
-    }
-    navigation.navigate("Home", { info: pass + ":" + phone });
+
+    setChose(true);
   };
 
   useEffect(() => {
@@ -70,6 +75,9 @@ export default function Login({ navigation, route }) {
         );
       });
   }, []);
+  if (chose) {
+    return <Role role={role} setRole={setRole} navigation={navigation} phone={phone} />;
+  }
 
   return (
     <View
