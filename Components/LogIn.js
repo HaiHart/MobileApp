@@ -24,7 +24,7 @@ export default function Login({ navigation, route }) {
   BackHandler.addEventListener("hardwareBackPress", function () {
     if (chose) {
       setChose(false);
-      return;
+      return true;
     }
   });
 

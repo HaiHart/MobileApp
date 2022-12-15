@@ -1,7 +1,10 @@
 import React from "react";
-import { View,Text } from "react-native";
+import { View,Text, BackHandler } from "react-native";
 
 export default function Home({navigation, route}) {
+    BackHandler.addEventListener('hardwareBackPress',()=>{
+        return true
+    })
     return(
         <View>
             <Text>

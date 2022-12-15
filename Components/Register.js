@@ -99,7 +99,7 @@ export default function Register({ navigation, route }) {
   BackHandler.addEventListener("hardwareBackPress", function () {
     if (chose) {
       setChose(false);
-      return;
+      return true;
     }
   });
 
