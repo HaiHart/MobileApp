@@ -7,15 +7,15 @@ import { Octicons } from "@expo/vector-icons";
 export default function HomeManager({ navigation, route }) {
   const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
   console.log(info)
-
+  
   const onPressCreateMotel = () => {
     navigation.navigate("CreateMotel");
   };
-
+  
   const onPressMotel = () => {
     navigation.navigate("Motel");
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.HeaderIcon}>
@@ -44,11 +44,8 @@ export default function HomeManager({ navigation, route }) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    alignItems: "flex-end",
     width: "100%",
     height: "100%",
-    backgroundColor:"white"
   },
   background: {
     backgroundColor: "#fff",
