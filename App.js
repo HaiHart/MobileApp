@@ -10,14 +10,17 @@ import ServiceManager from "./screens/ServiceManager";
 import ServiceRenter from "./screens/ServiceRenter";
 import PlusIcon from "./assets/Plus.png";
 import HomeIcon from "./assets/Home.png";
-import FeatureICon from './assets/Category.png'
+import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
 import store from "./store/store";
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
-import FeatureRenter from './screens/FeatureRenter';
-import FeatureManager from './screens/FeatureManager'
+import FeatureRenter from "./screens/FeatureRenter";
+import FeatureManager from "./screens/FeatureManager";
+import HomeManager from "./screens/HomeManager";
+import CreateMotel from "./screens/CreateMotel";
+import Motel from "./screens/Motel";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,6 +40,13 @@ const Logged = ({navigation, route}) => {
             return <Image source={FeatureICon} />;
           }
         },
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          height:100,
+          borderTopRightRadius:50,
+          borderTopLeftRadius:50,
+          borderColor:"#2F2D51"
+        }
       })}
     >
       <Tab.Screen 
@@ -49,10 +59,6 @@ const Logged = ({navigation, route}) => {
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}
       ></Tab.Screen>
       <Tab.Screen name="Feature" component={FeatureRenter}></Tab.Screen>
-      
-      <Tab.Screen name="Notification" component={Notification}></Tab.Screen>
-      <Tab.Screen name="Profile" component={Profile}></Tab.Screen>
-      <Tab.Screen name="EditProfile" component={EditProfile}></Tab.Screen>
     </Tab.Navigator>
   );
 };
@@ -77,6 +83,37 @@ export default function App() {
             component={Logged}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="HomeManager"
+            component={HomeManager}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="Notification"
+            component={Notification}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
+          <Tab.Screen
+            name="Profile"
+            component={Profile}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
+          <Tab.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
+          <Tab.Screen
+            name="CreateMotel"
+            component={CreateMotel}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
+          <Tab.Screen
+            name="Motel"
+            component={Motel}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
