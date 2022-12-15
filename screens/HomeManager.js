@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, StatusBar} from "react-native";
 import { CreateMotelItem, MotelListItem } from "../Components/MotelListItem";
 import ProfielIcon from "../assets/Profile.png";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "flex-end",
     width: "100%",
+    paddingTop: StatusBar.currentHeight,
     height: "100%",
   },
   background: {
