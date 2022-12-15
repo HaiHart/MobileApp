@@ -1,13 +1,17 @@
 import React from "react";
-import { View,Text } from "react-native";
+import { View,Text, Button} from "react-native";
 
 export default function Home({navigation, route}) {
-    console.log(">> Home screen")
+    
+    
     return(
         <View>
             <Text>
                 {route.params.info} Home
             </Text>
+            <Button onPress={() => navigation.navigate("Profile")}
+                title="Profile"
+            />
         </View>
     )
 }
