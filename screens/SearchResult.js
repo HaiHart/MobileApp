@@ -38,9 +38,18 @@ export default function SearchResult({ navigation, route }) {
           {/* <TouchableOpacity>
 
           </TouchableOpacity> */}
-          <Image source={require("../assets/room1.png")}></Image>
-          <Image source={require("../assets/room1.png")}></Image>
-          <Image source={require("../assets/room1.png")}></Image>
+          <TouchableOpacity onPress={onPressMotel}>
+            <Image source={require("../assets/room1.png")}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onPressMotel}>
+            <Image source={require("../assets/room1.png")}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onPressMotel}>
+            <Image source={require("../assets/room1.png")}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onPressMotel}>
+            <Image source={require("../assets/room1.png")}></Image>
+          </TouchableOpacity>
         </ScrollView>
         <Text style={styles.text}>Recommend</Text>
         <RoomListItem onPress={onPressMotel} />

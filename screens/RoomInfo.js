@@ -12,7 +12,9 @@ import Svg, { Path } from "react-native-svg";
 import { CreateRoomItem, RoomListItem } from "../Components/RoomListItem";
 
 export default function RoomInfo({ navigation, route }) {
-  const onPressRoomImage = () => {};
+  const onPressRent = () => {
+    navigation.navigate("HomeRenter")
+  };
   const backIcon = () => {
     return (
       <Svg width="10" height="18" viewBox="0 0 10 18" fill="none">
@@ -56,7 +58,10 @@ export default function RoomInfo({ navigation, route }) {
             {`\u2022`}  Number of bedroom: 1
           </Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          // onPress={onPressRent}
+        >
           <Text style={styles.buttonText}>RENT</Text>
         </TouchableOpacity>
       </ScrollView>
