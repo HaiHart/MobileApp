@@ -2,33 +2,19 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar, TouchableOpacity} from "react-native";
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
+
+
 const DATA = [
   {
-    id: "1",
-    time: "15/12/2022",
-    type: "Tiền nhà",
-    content: "Tiền nhà Tháng này là 12 triệu, vui lòng thành toán trước ngày 20/12/2022",
-    cost: "12 triệu",
-    extend: true,
-    approve: true,
+    title: "YESTERDAY",
+    data: ["[Tiền nhà] tháng 12 - 12.000.000", 
+         "[Người thuê mới] Đỗ Quốc Khánh - phòng 3", 
+         "[Người thuê mới] Phạm Quốc Bảo - phòng 3", ]
   },
   {
-    id: "2",
-    time: "15/12/2022",
-    type: "Hợp đồng",
-    content: "Đặng Quốc Thanh vừa thuê phòng số 5",
-    cost: "2 triệu",
-    extend: false,
-    approve: true,
-  },
-  {
-    id: "3",
-    time: "17/12/2022",
-    type: "Hợp đồng",
-    content: "Đặng Quốc Thanh vừa thuê phòng số 5",
-    cost: "2 triệu",
-    extend: false,
-    approve: true,
+    title: "13/12/2022",
+    data: ["[Tiền nhà] tháng 10 -Phạm Quốc Bảo chưa đóng tiền", 
+         "[Người thuê mới] Lương Quốc Bảo - phòng 4", ]
   },
 ];
 
@@ -57,15 +43,15 @@ export default function Notification({navigation, route}) {
                     style={header_styles.icon}/>
                 <Text style={header_styles.title} >Notitification</Text>
               </TouchableOpacity> */}
-            {/* <SectionList
-              sections={DATA}
-              keyExtractor={(item, index) => item.id}
-              renderItem={({ item }) => <Item title={item.time} />}
-              renderSectionHeader={({ section: {   } }) => (
-                  <Text style={styles.header}>{title}</Text>
-              )}
+            <SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => <Item title={item} />}
+            renderSectionHeader={({ section: { title } }) => (
+                <Text style={styles.header}>{title}</Text>
+            )}
             stickySectionHeadersEnabled={false}
-            /> */}
+            />
         </SafeAreaView>
     )
 }

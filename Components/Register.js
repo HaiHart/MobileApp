@@ -214,9 +214,9 @@ export function Role({ role, setRole, navigation, name, phone }) {
             });
           }
           else {
-            navigation.navigate("HomeRenter", {
-              info: { name: name, phone: phone, role: role },
-            });
+            // navigation.navigate("HomeRenter", {
+            //   info: { name: name, phone: phone, role: role },
+            // });
           }
         }}
       >
