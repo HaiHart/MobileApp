@@ -15,7 +15,7 @@ import ReactNativePhoneInput from "react-native-phone-input";
 
 const role_asset = require("../assets/role_asset.png");
 const renter = require("../assets/renter.png");
-const mamanger = require("../assets/Profile.png");
+const mamanger = require("../assets/manager.png");
 
 export default function Register({ navigation, route }) {
   const [info, setInfo] = useState({
