@@ -59,7 +59,7 @@ export default function Profile({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={header_styles.container}>
+      {/* <View style={header_styles.container}>
 
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -69,13 +69,8 @@ export default function Profile({ navigation, route }) {
         </TouchableOpacity>
 
         <Text style={header_styles.title}>Profile</Text>
-        <TouchableOpacity
-          onPress={() => setIsEditProfile(true)}
-          style={header_styles.icon_edit}
-        >
-          <Ionicons name="pencil" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
+        
+      </View> */}
       <View style={logo_styles.container}>
         <Image
           style={logo_styles.image}
@@ -87,6 +82,12 @@ export default function Profile({ navigation, route }) {
           <Text style={logo_styles.name}>{userinfo.name}</Text>
           <Text style={logo_styles.nick_name}>{userinfo.nickname}</Text>
         </View>
+        <TouchableOpacity
+          onPress={() => setIsEditProfile(true)}
+          style={header_styles.icon_edit}
+        >
+          <Ionicons name="pencil" size={24} color="black" />
+        </TouchableOpacity>
       </View>
       <View style={info_row_styles.container}>
         <FontAwesome5

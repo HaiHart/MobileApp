@@ -49,14 +49,14 @@ export default function Notification({navigation, route}) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
               style={header_styles.container}
               onPress={() => navigation.goBack()}>
                 <AntDesign 
                     name="left" size={24} color="black" 
                     style={header_styles.icon}/>
                 <Text style={header_styles.title} >Notitification</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             {/* <SectionList
               sections={DATA}
               keyExtractor={(item, index) => item.id}

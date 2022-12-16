@@ -11,9 +11,10 @@ import { CreateMotelItem, MotelListItem } from "../Components/MotelListItem";
 import Svg, { Path } from "react-native-svg";
 
 export default function HomeManager({ navigation, route }) {
-  const { info } = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
-  console.log(info);
 
+  // const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
+  // console.log(info)
+  
   const onPressCreateMotel = () => {
     navigation.navigate("CreateMotel");
   };

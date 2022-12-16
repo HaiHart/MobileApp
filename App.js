@@ -13,6 +13,7 @@ import store from './store/store'
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from "./screens/FeatureRenter";
+import FeatureManager from "./screens/FeatureManager";
 import HomeManager from "./screens/HomeManager";
 import HomeRenter from "./screens/HomeRenter"
 import CreateMotel from "./screens/CreateMotel";
@@ -32,22 +33,47 @@ const Tab = createBottomTabNavigator();
 
 var role = "Renter";
 
-const Logged = ({navigation, route}) => {
+const Logged = ({navigation, _route}) => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "HomePage") {
-            return <Foundation name="home" size={36} color="black" />;
+          console.log(route.name)
+          if (route.name === "HomeManagerOfficial") {
+            return <Foundation 
+                      name="home" 
+                      size={36} 
+                      color="black"
+                      onPress={() => {
+                        navigation.navigate(
+                          "HomeManager", 
+                          { info: "yes" });
+                      }} />;
           } else if (route.name === "Service") {
-            return <AntDesign name="plussquare" size={64} color="black" />;
+            return <AntDesign 
+                      name="plussquare" 
+                      size={64} 
+                      color="black"
+                      onPress={() => {
+                        navigation.navigate(
+                          "Service", 
+                        );
+                      }} />;
           } else if (route.name === "Feature") {
-            return <Ionicons name="grid" size={36} color="black" />;
+            return <Ionicons  
+                      name="grid" 
+                      size={36} 
+                      color="black"
+                      onPress={() => {
+                        navigation.navigate(
+                          "Feature", 
+                        );
+                      }}
+                      />;
           }
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-
           height: 100,
           borderTopRightRadius: 35,
           borderTopLeftRadius: 35,
@@ -56,16 +82,21 @@ const Logged = ({navigation, route}) => {
       })}
     >
       <Tab.Screen 
-        name="HomePage" 
+        name="HomeManagerOfficial" 
         component={HomeManager}
         options={{ headerShown: false }}
         ></Tab.Screen>
       <Tab.Screen
         name="Service"
-        component={(role = "Renter" ? ServiceRenter : ServiceManager)}
+        component={ServiceManager}
         options={{ headerShown: false }}
       ></Tab.Screen>
-      <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
+      <Tab.Screen 
+        name="Feature" 
+        component={FeatureManager} 
+        options={{ headerShown: false }}
+        initialParams={{info: "yes"}}
+      ></Tab.Screen>
     </Tab.Navigator>
   );
 };
@@ -92,16 +123,16 @@ export default function App() {
             component={Register}
             options={{ headerShown: false }}
           />
-          {/* <Stack.Screen
-            name="Home"
+          <Stack.Screen
+            name="HomeManager"
             component={Logged}
             options={{ headerShown: false }}
-          /> */}
-          <Stack.Screen
-            name="HomeManager"  
+          />
+          {/* <Stack.Screen
+            name="HomeManagerOfficial"  
             component={HomeManager}
             options={{ headerShown: false }}
-          />
+          /> */}
           <Stack.Screen
             name="HomeRenter"  
             component={HomeRenter}
@@ -166,6 +197,15 @@ export default function App() {
             name="RoomInfo"
             component={RoomInfo}
             // options={{ headerShown: false }}
+            name="Service"
+            component={ServiceManager}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen 
+            name="Feature" 
+            component={FeatureManager} 
+            // options={{ headerShown: false }}
+            initialParams={{info: "yes"}}
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

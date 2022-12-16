@@ -53,7 +53,7 @@ export default function EditProfile({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={header_styles.container}>
+      {/* <View style={header_styles.container}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
 
         <AntDesign
@@ -64,7 +64,7 @@ export default function EditProfile({ navigation, route }) {
           />
           </TouchableOpacity>
         <Text style={header_styles.title}>Edit Profile</Text>
-      </View>
+      </View> */}
       <View style={item_styles.container}>
         <Text style={item_styles.text}>Full Name</Text>
         <TextInput
@@ -173,10 +173,9 @@ const item_styles = StyleSheet.create({
 
   button_container: {
     marginBottom: 26,
-    marginTop: 26,
     paddingLeft: 45,
     paddingRight: 45,
-    position: "absolute",
+    position: "relative",
     bottom: 0,
     width: "100%",
   },
