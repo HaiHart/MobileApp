@@ -7,7 +7,7 @@ import CleaningServiceModal from "../Components/CleaningModal";
 import WifiServiceModal from "../Components/WifiModal";
 import ParkingServiceModal from "../Components/ParkingModal";
 
-const ServiceRenter = () => {
+const ServiceRenter = ({ navigation, route }) => {
   const [modalCleaning, setModalCleaning] = useState(false);
   const [modalWifi, setModalWifi] = useState(false);
   const [modalParking, setModalParking] = useState(false);

@@ -34,7 +34,7 @@ const Logged = ({navigation, route}) => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "HomePage") {
+          if (route.name === "HomeManager") {
             return <Foundation name="home" size={36} color="black" />;
           } else if (route.name === "Service") {
             return <AntDesign name="plussquare" size={64} color="black" />;
@@ -52,17 +52,23 @@ const Logged = ({navigation, route}) => {
         },
       })}
     >
-      <Tab.Screen 
-        name="HomePage" 
-        component={HomeManager}
+      <Stack.Screen
+            name="HomeManager"  
+            component={HomeManager}
+            options={{ headerShown: false }}
+            initialParams={{info: "yes"}}
+          />
+      {/* <Tab.Screen
+        name="HomeRenter"  
+        component={HomeRenter}
         options={{ headerShown: false }}
-        ></Tab.Screen>
-      <Tab.Screen
+      /> */}
+      <Stack.Screen
         name="Service"
         component={(role = "Renter" ? ServiceRenter : ServiceManager)}
         options={{ headerShown: false }}
-      ></Tab.Screen>
-      <Tab.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Tab.Screen>
+      ></Stack.Screen>
+      <Stack.Screen name="Feature" component={FeatureRenter} options={{ headerShown: false }}></Stack.Screen>
     </Tab.Navigator>
   );
 };
@@ -96,7 +102,7 @@ export default function App() {
           /> */}
           <Stack.Screen
             name="HomeManager"  
-            component={HomeManager}
+            component={Logged}
             options={{ headerShown: false }}
           />
           <Stack.Screen
