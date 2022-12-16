@@ -13,12 +13,8 @@ import Svg, { Path } from "react-native-svg";
 export default function HomeRenter({ navigation, route }) {
   const { info } = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
 
-  const onPressCreateMotel = () => {
-    navigation.navigate("CreateMotel");
-  };
-
-  const onPressMotel = () => {
-    navigation.navigate("Motel");
+  const onPressSearch = () => {
+    navigation.navigate("SearchResult");
   };
 
   return (
@@ -52,7 +48,7 @@ export default function HomeRenter({ navigation, route }) {
           <View style={styles.searchbar}>
             <TouchableOpacity 
               style={styles.search}
-              onPress={null}
+              onPress={onPressSearch}
             >
               <View
                 style={{

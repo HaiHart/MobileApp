@@ -11,7 +11,7 @@ import {
 import Svg, { Path } from "react-native-svg";
 import { CreateRoomItem, RoomListItem } from "../Components/RoomListItem";
 
-export default function RoomÌnfo({ navigation, route }) {
+export default function RoomInfo({ navigation, route }) {
   const onPressRoomImage = () => {};
   const backIcon = () => {
     return (
@@ -57,7 +57,7 @@ export default function RoomÌnfo({ navigation, route }) {
           </Text>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>CREATE MOTEL</Text>
+          <Text style={styles.buttonText}>RENT</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 30,
     height: 60,
     margin: 15,
-    backgroundColor: "#FF97B5",
+    backgroundColor: "#93D8F8",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
