@@ -144,31 +144,21 @@ export default function Login({ navigation, route }) {
           <Text style={styles.text}>Sign In</Text>
         </View>
         <View>
-          <PhoneInput
-            inputStyle={{
-              boxSizing: "border-box",
-              width: 300,
-              height: 48,
-              marginBottom: 5,
-              backgroundColor: "#FFFFFF",
-              //border: "5px solid #D5D5E1",
-              borderRadius: 10,
-            }}
-            containerStyle={styles.field}
+          <TextInput
             style={styles.field}
-            textProps={{
-              placeholder: "Phone Number",
-            }}
-            onChangePhoneNumber={setPhone}
+            placeholder="Phone Number"
+            placeholderTextColor='#D5D5E1'
+            onChangeText={setPhone}
             value={phone}
+            keyboardType="numeric"
           />
           <TextInput
             style={styles.field}
             placeholder="Password"
+            placeholderTextColor='#D5D5E1'
             onChangeText={setPass}
             secureTextEntry={true}
             value={pass}
-            placeholderTextColor='#D5D5E1'
           />
           <View>
             <View
@@ -185,11 +175,9 @@ export default function Login({ navigation, route }) {
                   height:16,
                   borderWidth: 1,
                   borderColor: 'D5D5E1',
-
                 }}
                 value={toggleCheckBox}
                 onValueChange={setToggleCheckBox}
-                // color='2F2D51'
               />
               <Text
                 style={{
@@ -208,13 +196,11 @@ export default function Login({ navigation, route }) {
           >
             <Text
               style={{
-                width: 70,
-                height: 22,
                 fontStyle: "normal",
                 fontWeight: "700",
                 fontSize: 18,
                 lineHeight: 22,
-                color: "#FFFFFF",
+                color: "#fff",
               }}
             >
               Sign In
@@ -225,7 +211,6 @@ export default function Login({ navigation, route }) {
           style={{
             width: 264,
             height: 20,
-            // font-family: 'Montserrat';
             fontStyle: "normal",
             fontWeight: "600",
             fontSize: 16,
@@ -265,11 +250,9 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   field: {
-    boxSizing: "border-box",
     width: 300,
     height: 48,
     marginBottom: 10,
-    // backgroundColor: "#FFFFFF",
     borderColor: '#D5D5E1',
     borderWidth: 1,
     borderRadius: 10,
