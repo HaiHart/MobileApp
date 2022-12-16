@@ -168,6 +168,7 @@ export default function Login({ navigation, route }) {
             onChangeText={setPass}
             secureTextEntry={true}
             value={pass}
+            placeholderTextColor='#D5D5E1'
           />
           <View>
             <View
@@ -179,12 +180,21 @@ export default function Login({ navigation, route }) {
               }}
             >
               <CheckBox
+                style={{
+                  width:16,
+                  height:16,
+                  borderWidth: 1,
+                  borderColor: 'D5D5E1',
+
+                }}
                 value={toggleCheckBox}
                 onValueChange={setToggleCheckBox}
+                // color='2F2D51'
               />
               <Text
                 style={{
                   paddingLeft: 12,
+                  fontSize: 12,
                 }}
               >
                 Remember me
@@ -238,15 +248,13 @@ export default function Login({ navigation, route }) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 280,
-    color: "#2F2D51",
+    width: 300,
     height: 48,
     backgroundColor: "#2F2D51",
     fontSize: 18,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    alignContent: "center",
   },
   text: {
     // fontFamily: "Montserrat",
@@ -261,9 +269,11 @@ const styles = StyleSheet.create({
     width: 300,
     height: 48,
     marginBottom: 10,
-    backgroundColor: "#FFFFFF",
-    border: "5px solid #D5D5E1",
+    // backgroundColor: "#FFFFFF",
+    borderColor: '#D5D5E1',
+    borderWidth: 1,
     borderRadius: 10,
+    paddingLeft: 15,
   },
   container: {
     flex: 1,

@@ -22,6 +22,10 @@ import HomeManager from "./screens/HomeManager";
 import CreateMotel from "./screens/CreateMotel";
 import Motel from "./screens/Motel";
 import { Foundation, AntDesign, Ionicons} from '@expo/vector-icons'; 
+import EditMotel from "./screens/EditMotel";
+import CreateRoom from "./screens/CreateRoom";
+import Room from "./screens/Room";
+import EditRoom from "./screens/EditRoom";
 
 
 const Stack = createNativeStackNavigator();
@@ -73,6 +77,11 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Login"
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: '#fff'
+            }
+          }}
         >
           <Stack.Screen
             name="Login"
@@ -97,27 +106,47 @@ export default function App() {
           <Stack.Screen
             name="Notification"
             component={Notification}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
             name="Profile"
             component={Profile}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
             name="CreateMotel"
             component={CreateMotel}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
             name="Motel"
             component={Motel}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="EditMotel"
+            component={EditMotel}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="CreateRoom"
+            component={CreateRoom}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Room"
+            component={Room}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="EditRoom"
+            component={EditRoom}
+            // options={{ headerShown: false }}
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
