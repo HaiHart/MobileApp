@@ -6,10 +6,16 @@ import {
   View,
   Text,
   TextInput,
+  Image,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import { RoomListItem } from "../Components/RoomListItem";
 
 export default function MotelInfo({ navigation, route }) {
+  const onPressRoom = () => {
+    navigation.navigate("RoomInfo")
+  }
+
   const backIcon = () => {
     return (
       <Svg width="10" height="18" viewBox="0 0 10 18" fill="none">
@@ -29,53 +35,32 @@ export default function MotelInfo({ navigation, route }) {
       <ScrollView horizontal={false}>
         <Image
           style={{
+            marginLeft: 15,
             borderBottomLeftRadius: 10,
             borderTopLeftRadius: 10,
           }}
           source={require("../assets/motel_image.png")}
         ></Image>
         <Text style={styles.text}>Motel Info</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Type here..."
-          placeholderTextColor="#D5D5E1"
-          cursorColor={"#FF97B5"}
-        ></TextInput>
-        <Text style={styles.text}>Image*</Text>
-        <TouchableOpacity style={styles.inputImage}>
-          {/* insert image */}
-        </TouchableOpacity>
-        <Text style={styles.text}>Location *</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Type here..."
-          placeholderTextColor="#D5D5E1"
-          cursorColor={"#FF97B5"}
-        ></TextInput>
-        <Text style={styles.text}>Number Of Floor *</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Type here..."
-          placeholderTextColor="#D5D5E1"
-          cursorColor={"#FF97B5"}
-        ></TextInput>
-        <Text style={styles.text}>Electricity Price *</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Type here..."
-          placeholderTextColor="#D5D5E1"
-          cursorColor={"#FF97B5"}
-        ></TextInput>
-        <Text style={styles.text}>Water Price *</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Type here..."
-          placeholderTextColor="#D5D5E1"
-          cursorColor={"#FF97B5"}
-        ></TextInput>
-        <TouchableOpacity style={styles.button}>
-          <Text>CREATE MOTEL</Text>
-        </TouchableOpacity>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoText}>
+            {`\u2022`} Location: Nguyen Hue, HCM
+          </Text>
+          <Text style={styles.infoText}>{`\u2022`} Number of floor: 4</Text>
+          <Text style={styles.infoText}>{`\u2022`} Electricity: 3.500 đ/kWh</Text>
+          <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+            <Text style={{ fontSize: 16, lineHeight: 30 }}>
+              {`\u2022`} Water: 18.000 đ/m
+            </Text>
+            <Text style={{ fontSize: 9, lineHeight: 18 }}>3</Text>
+          </View>
+        </View>
+        <Text style={styles.text}>Room List</Text>
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
       </ScrollView>
     </View>
   );
@@ -97,15 +82,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
   },
-  inputImage: {
-    width: Dimensions.get("window").width - 30,
-    height: 150,
-    margin: 15,
-    borderWidth: 1,
-    borderStyle: "dashed",
-    borderRadius: 10,
-    borderColor: "#D5D5E1",
-  },
   button: {
     width: Dimensions.get("window").width - 30,
     height: 60,
@@ -115,5 +91,33 @@ const styles = StyleSheet.create({
 
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  text: {
+    fontSize: 16,
+    fontWeight: "700",
+    margin: 15,
+  },
+
+  infoContainer: {
+    width: Dimensions.get("window").width - 30,
+    height: 120,
+    margin: 15,
+    marginTop: 0,
+    padding: 10,
+    paddingLeft: 30,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  infoText: {
+    fontSize: 16,
   },
 });
