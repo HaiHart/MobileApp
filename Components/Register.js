@@ -49,30 +49,33 @@ export default function Register({ navigation, route }) {
           .then((answer) => {
             console.log(answer);
             const input = JSON.parse(answer);
-            if (input[info.phone] !== undefined){
-              
-              alert("phone is registerd")
-              setChose(false)
-              return
-            }
-            else{
+            if (input[info.phone] !== undefined) {
+              alert("phone is registerd");
+              setChose(false);
+              return;
+            } else {
               setChose(true);
-              console.log(">> Register: " + info)
-              input[info.phone] = {name: info.name, pass:info.pass, email: info.email ? info.email:"",nickname:""}
-            
-              FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
-              encoding: FileSystem.EncodingType.UTF8,
-            })
-              .then(() => {
-                console.log(phone);
-              })
-              .catch(function (error) {
-                console.log(
-                  "There has been a problem with your fetch operation: " +
-                    error.message
-                );
-              });}
+              console.log(">> Register: " + info);
+              input[info.phone] = {
+                name: info.name,
+                pass: info.pass,
+                email: info.email ? info.email : "",
+                nickname: "",
+              };
 
+              FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
+                encoding: FileSystem.EncodingType.UTF8,
+              })
+                .then(() => {
+                  console.log(phone);
+                })
+                .catch(function (error) {
+                  console.log(
+                    "There has been a problem with your fetch operation: " +
+                      error.message
+                  );
+                });
+            }
           })
           .catch(function (error) {
             console.log(
@@ -80,9 +83,13 @@ export default function Register({ navigation, route }) {
                 error.message
             );
           });
-      }else{
-        const input={}
-        input[info.phone]={name: info.name, pass:info.pass, email: info.email}
+      } else {
+        const input = {};
+        input[info.phone] = {
+          name: info.name,
+          pass: info.pass,
+          email: info.email,
+        };
         FileSystem.writeAsStringAsync(fileUri, JSON.stringify(input), {
           encoding: FileSystem.EncodingType.UTF8,
         })
@@ -95,11 +102,9 @@ export default function Register({ navigation, route }) {
                 error.message
             );
           });
-          setChose(true);
-
+        setChose(true);
       }
-    })
-
+    });
   };
 
   BackHandler.addEventListener("hardwareBackPress", function () {
@@ -132,7 +137,7 @@ export default function Register({ navigation, route }) {
 }
 
 export function Role({ role, setRole, navigation, name, phone }) {
-  console.log("Role, name, phone " + role + ", " + name + ", " + phone)
+  console.log("Role, name, phone " + role + ", " + name + ", " + phone);
   return (
     <View
       style={{
@@ -142,9 +147,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
       }}
     >
       <View>
-        <Image 
-          source={role_asset} 
-          style={styles.img} />
+        <Image source={role_asset} style={styles.img} />
       </View>
       <View
         style={{
@@ -178,7 +181,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           marginBottom: 20,
         }}
       >
-         <Box
+        <Box
           uri={renter}
           role={"Renter"}
           color={"#93D8F8"}
@@ -191,7 +194,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           color={"#FF97B5"}
           sel={role}
           setRole={setRole}
-        /> 
+        />
       </View>
       <TouchableOpacity
         style={{
@@ -204,7 +207,7 @@ export function Role({ role, setRole, navigation, name, phone }) {
           alignContent: "center",
         }}
         onPress={() => {
-          console.log(name, phone, role)
+          console.log(name, phone, role);
           navigation.navigate("HomeManager", {
             info: { name: name, phone: phone, role: role },
           });
@@ -249,7 +252,7 @@ function Box({ uri, role, color, sel, setRole }) {
 }
 
 function Filling({ info, setInfo, OnSubmit, navigation }) {
-  console.log("info " + info)
+  console.log("info " + info);
   const [cor, setCor] = useState("");
 
   return (
@@ -273,6 +276,7 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
           <TextInput
             style={styles.field}
             placeholder="Name"
+            placeholderTextColor="#D5D5E1"
             onChangeText={(e) => {
               setInfo((pre) => {
                 return { ...pre, name: e };
@@ -280,12 +284,12 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
             }}
             value={info.name}
           />
-          <ReactNativePhoneInput
+          <TextInput
             style={styles.field}
-            textProps={{
-              placeholder: "Phone Number",
-            }}
-            onChangePhoneNumber={(e) => {
+            placeholder="Phone Number"
+            placeholderTextColor="#D5D5E1"
+            keyboardType="numeric"
+            onChangeText={(e) => {
               setInfo((pre) => {
                 return { ...pre, phone: e };
               });
@@ -295,6 +299,7 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
           <TextInput
             style={styles.field}
             placeholder="Email"
+            placeholderTextColor="#D5D5E1"
             onChangeText={(e) => {
               setInfo((pre) => {
                 return { ...pre, email: e };
@@ -305,6 +310,7 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
           <TextInput
             style={styles.field}
             placeholder="Password"
+            placeholderTextColor="#D5D5E1"
             onChangeText={(e) => {
               setInfo((pre) => {
                 return { ...pre, pass: e };
@@ -319,6 +325,7 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
               color: cor === info.pass ? "black" : "red",
             }}
             placeholder="Confirm Password"
+            placeholderTextColor="#D5D5E1"
             onChangeText={setCor}
             value={cor}
           />
@@ -332,6 +339,12 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
               }}
             >
               <CheckBox
+                style={{
+                  width:16,
+                  height:16,
+                  borderWidth: 1,
+                  borderColor: 'D5D5E1',
+                }}
                 value={info.consent}
                 onValueChange={(e) => {
                   setInfo((pre) => {
@@ -342,31 +355,35 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
               <Text
                 style={{
                   paddingLeft: 12,
-                  width: 185,
-                  height: 15,
-                  // fontFamily: 'Montserrat',
-                  fontStyle: "normal",
-                  fontWeight: "400",
                   fontSize: 12,
-                  lineHeight: 15,
-                  color: "#000000",
                 }}
               >
                 I agree with Term & Condition
               </Text>
             </View>
           </View>
-          <Button
+          <TouchableOpacity
             style={styles.button}
             title="Create Account"
             onPress={() => OnSubmit()}
-          />
+          >
+            <Text
+              style={{
+                fontStyle: "normal",
+                fontWeight: "700",
+                fontSize: 18,
+                lineHeight: 22,
+                color: "#fff",
+              }}
+            >
+              Create Account
+            </Text>
+          </TouchableOpacity>
         </View>
         <Text
           style={{
             width: 275,
             height: 20,
-            // font-family: 'Montserrat';
             position: "relative",
             fontStyle: "normal",
             fontWeight: "600",
@@ -390,14 +407,15 @@ function Filling({ info, setInfo, OnSubmit, navigation }) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 280,
-    color: "2F2D51",
+    width: 300,
     height: 48,
     backgroundColor: "#2F2D51",
     fontSize: 18,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
-    // fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: 28,
@@ -405,13 +423,13 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   field: {
-    boxSizing: "border-box",
     width: 300,
     height: 48,
-    marginBottom: 8,
-    backgroundColor: "#FFFFFF",
-    border: "5px solid #D5D5E1",
+    marginBottom: 10,
+    borderColor: "#D5D5E1",
+    borderWidth: 1,
     borderRadius: 10,
+    paddingLeft: 15,
   },
 
   container: {
@@ -430,7 +448,6 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
   },
   addOnText: {
-    // fontFamily: 'Montserrat',
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: 16,
@@ -445,13 +462,12 @@ const styles = StyleSheet.create({
   roleTxt: {
     width: 63,
     height: 22,
-    // fontFamily: 'Montserrat',
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: 16,
     lineHeight: 22,
     color: "#2F2D51",
-    textAlign: "center"
+    textAlign: "center",
   },
   roleImg: {
     resizeMode: "stretch",
