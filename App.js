@@ -4,21 +4,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login from "./Components/LogIn";
-import Home from "./Components/Home";
 import Register from "./Components/Register";
 import ServiceManager from "./screens/ServiceManager";
 import ServiceRenter from "./screens/ServiceRenter";
-import PlusIcon from "./assets/Plus.png";
-import HomeIcon from "./assets/Home.png";
-import FeatureICon from "./assets/Category.png";
 import Notification from "./Components/Notification";
 import Profile from "./Components/Profile";
 import store from './store/store'
 import { Provider } from "react-redux";
 import EditProfile from "./Components/EditProfile";
 import FeatureRenter from "./screens/FeatureRenter";
-import FeatureManager from "./screens/FeatureManager";
 import HomeManager from "./screens/HomeManager";
+import HomeRenter from "./screens/HomeRenter"
 import CreateMotel from "./screens/CreateMotel";
 import Motel from "./screens/Motel";
 import { Foundation, AntDesign, Ionicons} from '@expo/vector-icons'; 
@@ -101,6 +97,11 @@ export default function App() {
           <Stack.Screen
             name="HomeManager"  
             component={HomeManager}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HomeRenter"  
+            component={HomeRenter}
             options={{ headerShown: false }}
           />
           <Stack.Screen

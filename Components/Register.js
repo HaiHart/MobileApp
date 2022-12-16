@@ -205,9 +205,16 @@ export function Role({ role, setRole, navigation, name, phone }) {
         }}
         onPress={() => {
           console.log(name, phone, role)
-          navigation.navigate("HomeManager", {
-            info: { name: name, phone: phone, role: role },
-          });
+          if (role.localeCompare("Manager") == 0) {
+            navigation.navigate("HomeManager", {
+              info: { name: name, phone: phone, role: role },
+            });
+          }
+          else {
+            navigation.navigate("HomeRenter", {
+              info: { name: name, phone: phone, role: role },
+            });
+          }
         }}
       >
         <Text
