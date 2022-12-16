@@ -5,8 +5,8 @@ import ProfielIcon from "../assets/Profile.png";
 import { Octicons } from "@expo/vector-icons";
 
 export default function HomeManager({ navigation, route }) {
-  const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
-  console.log(info)
+  // const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
+  // console.log(info)
   
   const onPressCreateMotel = () => {
     navigation.navigate("CreateMotel");

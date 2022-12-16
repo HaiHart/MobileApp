@@ -5,7 +5,7 @@ import Document from '../assets/Document.png'
 import PostRoomServiceModal from '../Components/PostRoomModal'
 import InvoiceServiceModal from '../Components/InvoiceModal'
 
-const ServiceManager = () => {
+const FeatureManager = ({ navigation, route }) => {
   const [modalPostRoom, setModalPostRoom] = useState(false);
   const [modalInvoice, setModalInvoice] = useState(false);
 
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ServiceManager;
+export default FeatureManager;
