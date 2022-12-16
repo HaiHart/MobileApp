@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 const DATA = [
   {
-    home_id: "1",
+    id: "1",
     time: "15/12/2022",
     type: "Tiền nhà",
     content: "Tiền nhà Tháng này là 12 triệu, vui lòng thành toán trước ngày 20/12/2022",
@@ -13,7 +13,7 @@ const DATA = [
     approve: true,
   },
   {
-    home_id: "1",
+    id: "2",
     time: "15/12/2022",
     type: "Hợp đồng",
     content: "Đặng Quốc Thanh vừa thuê phòng số 5",
@@ -22,7 +22,7 @@ const DATA = [
     approve: true,
   },
   {
-    home_id: "1",
+    id: "3",
     time: "17/12/2022",
     type: "Hợp đồng",
     content: "Đặng Quốc Thanh vừa thuê phòng số 5",
@@ -59,9 +59,9 @@ export default function Notification({navigation, route}) {
               </TouchableOpacity>
             {/* <SectionList
               sections={DATA}
-              keyExtractor={(item, index) => item + index}
-              renderItem={({ item }) => <Item title={item} />}
-              renderSectionHeader={({ section: { title } }) => (
+              keyExtractor={(item, index) => item.id}
+              renderItem={({ item }) => <Item title={item.time} />}
+              renderSectionHeader={({ section: {   } }) => (
                   <Text style={styles.header}>{title}</Text>
               )}
             stickySectionHeadersEnabled={false}

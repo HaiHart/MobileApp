@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { AntDesign, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { updateProfile } from "../store/users/userSlices";
+import { updateProfile } from "../store/userSlices";
 
 export default function EditProfile({ navigation, route }) {
   console.log(">> Edit profile screen");
