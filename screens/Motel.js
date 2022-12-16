@@ -7,17 +7,16 @@ import {
   Text,
   TextInput,
 } from "react-native";
-// import { Header } from "react-native-elements";
 import Svg, { Path } from "react-native-svg";
 import { CreateRoomItem, RoomListItem } from "../Components/RoomListItem";
 
 export default function Motel({ navigation, route }) {
   const onPressRoom = () => {
-    navigation.navigate("Motel")
+    navigation.navigate("Room")
   }
 
   const onPressCreateRoom = () => {
-    // navigation.navigate("CreateMotel")
+    navigation.navigate("CreateRoom")
   }
   const backIcon = () => {
     return (
@@ -46,29 +45,15 @@ export default function Motel({ navigation, route }) {
 
   return (
     <View style={styles.background}>
-      {/* <Header
-        leftComponent={backIcon}
-        centerComponent={{ text: "Motel" }}
-        rightComponent={editItem}
-        containerStyle={
-          {
-            // backgroundColor: "green",
-            // justifyContent: "center",
-            // alignItems: "center",
-          }
-        }
-      /> */}
-
       <ScrollView
         horizontal={false}
-        // showsVerticalScrollIndicator={false}
       >
-        <CreateRoomItem onPress={null} />
-        <RoomListItem onPress={null} />
-        <RoomListItem onPress={null} />
-        <RoomListItem onPress={null} />
-        <RoomListItem onPress={null} />
-        <RoomListItem onPress={null} />
+        <CreateRoomItem onPress={onPressCreateRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
+        <RoomListItem onPress={onPressRoom} />
       </ScrollView>
     </View>
   );
@@ -80,6 +65,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   text: {
+    fontSize: 16,
+    fontWeight: '700',
     paddingLeft: 15,
   },
   inputText: {

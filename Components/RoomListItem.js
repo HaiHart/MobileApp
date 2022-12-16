@@ -20,12 +20,28 @@ export class RoomListItem extends Component {
         style={styles.containerRoom}
         onPress={this.props.onPress}
       >
-        <Image 
+        <Image
           style={{
+            flex: 1,
             borderBottomLeftRadius: 10,
             borderTopLeftRadius: 10,
           }}
-          source={require('../assets/room.png')}></Image>
+          source={require("../assets/room.png")}
+        ></Image>
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <Text style={{fontSize: 16, marginLeft: 15, marginBottom: 20}}>Mini for 2 peoples</Text>
+          <Text style={{fontSize: 12, fontWeight: '900', color: '#FF97B5', marginLeft: 15}}>R.01</Text>
+          <View style={{ flexDirection: "row", alignItems: "flex-start", marginLeft: 15}}>
+            <Text style={{ fontSize: 12, lineHeight: 20 }}>Square: 15m</Text>
+            <Text style={{ fontSize: 6, lineHeight: 10 }}>2</Text>
+          </View>
+          <Text style={{fontSize: 12, marginLeft: 15, marginTop: 5}}>Floor: 1</Text>
+          <Text style={{fontSize: 12, marginLeft: 15, marginTop: 5}}>Price: 3.000.000 VND</Text>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -50,7 +66,7 @@ export class CreateRoomItem extends Component {
             fill="#FF97B5"
           />
         </Svg>
-        <Text>New Room</Text>
+        <Text style={styles.titleText}>New Room</Text>
       </TouchableOpacity>
     );
   }
@@ -61,7 +77,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 30,
     height: 70,
     marginHorizontal: 15,
-    marginVertical: 7.5,
+    marginTop: 15,
+    marginBottom: 7.5,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -80,6 +97,7 @@ const styles = StyleSheet.create({
     height: 150,
     marginHorizontal: 15,
     marginVertical: 7.5,
+    flexDirection: "row",
     // justifyContent: "center",
     // alignItems: "center",
     backgroundColor: "white",
