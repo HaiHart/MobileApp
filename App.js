@@ -23,6 +23,9 @@ import EditMotel from "./screens/EditMotel";
 import CreateRoom from "./screens/CreateRoom";
 import Room from "./screens/Room";
 import EditRoom from "./screens/EditRoom";
+import SearchResult from "./screens/SearchResult";
+import MotelInfo from "./screens/MotelInfo";
+import RoomInfo from "./screens/RoomInfo";
 
 
 const Stack = createNativeStackNavigator();
@@ -181,6 +184,19 @@ export default function App() {
             // options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
+            name="SearchResult"
+            component={SearchResult}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="MotelInfo"
+            component={MotelInfo}
+            // options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="RoomInfo"
+            component={RoomInfo}
+            // options={{ headerShown: false }}
             name="Service"
             component={ServiceManager}
             // options={{ headerShown: false }}
