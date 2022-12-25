@@ -9,11 +9,25 @@ import {
 } from "react-native";
 import { CreateMotelItem, MotelListItem } from "../Components/MotelListItem";
 import Svg, { Path } from "react-native-svg";
+import { useSelector } from "react-redux";
+
 
 export default function HomeManager({ navigation, route }) {
 
   // const {info} = route.params; //{name: 'hạ', phone: '+555', role: 'Renter'}
   // console.log(info)
+
+  console.log("Home manager")
+
+
+  const notifications = useSelector((state) => state.noti.noti);
+  console.log(notifications)
+
+  const accounts = useSelector((state) => state.accounts.accounts);
+  console.log(accounts)
+
+  // const services = useSelector((state) => state.services.services);
+  // console.log(services)
   
   const onPressCreateMotel = () => {
     navigation.navigate("CreateMotel");
@@ -69,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
+    backgroundColor: '#fff'
   },
   background: {
     backgroundColor: "#fff",

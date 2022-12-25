@@ -17,6 +17,7 @@ const role_asset = require("../assets/role_asset.png");
 const renter = require("../assets/renter.png");
 const mamanger = require("../assets/manager.png");
 
+
 export default function Register({ navigation, route }) {
   const [info, setInfo] = useState({
     name: String,
@@ -214,9 +215,9 @@ export function Role({ role, setRole, navigation, name, phone }) {
             });
           }
           else {
-            // navigation.navigate("HomeRenter", {
-            //   info: { name: name, phone: phone, role: role },
-            // });
+            navigation.navigate("HomeRenter", {
+              info: { name: name, phone: phone, role: role },
+            });
           }
         }}
       >

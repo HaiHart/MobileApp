@@ -14,16 +14,20 @@ const ServiceManager = () => {
   return (
     <View style={styles.container}>
       <View style={styles.HeaderIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")} style={styles.avatar}>
+        <TouchableOpacity 
+          // onPress={() => navigation.navigate("Profile")} 
+          style={styles.avatar}>
           <Image source={ProfielIcon}></Image>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Notification")} style={styles.bell}>
+        <TouchableOpacity 
+        // onPress={() => navigation.navigate("Notification")} 
+        style={styles.bell}>
           <Octicons name="bell-fill" size={30} color="#2F2D51" />
         </TouchableOpacity>
       </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
-          onPress={() => setModalSentReport(true)}
+          // onPress={() => setModalSentReport(true)}
           style={styles.item}
         >
           <Image source={Analyst}></Image>
@@ -32,7 +36,7 @@ const ServiceManager = () => {
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalAnalytic(true)}
+          // onPress={() => setModalAnalytic(true)}
         >
           <Image source={Analyst}></Image>
           <Text>Analytic</Text>
@@ -41,13 +45,13 @@ const ServiceManager = () => {
       <SentReportModal
         isVisible={modalSentReport}
         onCancel={() => {
-          setModalSentReport(false);
+          // setModalSentReport(false);
         }}
       />
       <AnalyticModal
         isVisible={modalAnalytic}
         onCancel={() => {
-          setModalAnalytic(false);
+          // setModalAnalytic(false);
         }}
       />
     </View>

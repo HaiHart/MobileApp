@@ -21,7 +21,7 @@ const ServiceRenter = ({ navigation, route }) => {
       </View>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
-          onPress={() => setModalCleaning(true)}
+          // onPress={() => setModalCleaning(true)}
           style={styles.item}
         >
           <Image source={Cleaning}></Image>
@@ -30,7 +30,7 @@ const ServiceRenter = ({ navigation, route }) => {
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalWifi(true)}
+          // onPress={() => setModalWifi(true)}
         >
           <Image source={Wifi}></Image>
           <Text>Wifi</Text>
@@ -38,7 +38,7 @@ const ServiceRenter = ({ navigation, route }) => {
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalParking(true)}
+          // onPress={() => setModalParking(true)}
         >
           <Image source={Parking}></Image>
           <Text>Parking</Text>
@@ -47,19 +47,19 @@ const ServiceRenter = ({ navigation, route }) => {
       <CleaningServiceModal
         isVisible={modalCleaning}
         onCancel={() => {
-          setModalCleaning(false);
+          // setModalCleaning(false);
         }}
       />
       <WifiServiceModal
         isVisible={modalWifi}
         onCancel={() => {
-          setModalWifi(false);
+          // setModalWifi(false);
         }}
       />
       <ParkingServiceModal
         isVisible={modalParking}
         onCancel={() => {
-          setModalParking(false);
+          // setModalParking(false);
         }}
       />
     </View>

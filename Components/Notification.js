@@ -1,8 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar, TouchableOpacity} from "react-native";
 import { useFonts } from 'expo-font';
-import { AntDesign } from '@expo/vector-icons';
+import { useSelector } from "react-redux";
 
+const noti_type = {
+  0 : "TIỀN THUÊ NHÀ",
+  1: "SỰ KIỆN",
+  2: "THUÊ NHÀ"
+}
 
 const DATA = [
   {
@@ -24,7 +29,55 @@ const Item = ({ title }) => (
   </View>
 );
 
+const list2view = (notifications) => {
+  let data = {}
+  for (let i = 0; i < notifications.length; ++i){
+    let title = notifications[i].time_start;
+    if (!(title in data)) {
+      data[title] = []
+
+    }
+    data[title].push(
+      `[${noti_type[notifications[i].type]}] ${notifications[i].content}`
+    )
+  }
+
+  const result = Object.entries(data).map(([k, v]) => {
+    return {
+      title: k,
+      data: v
+    };
+  });
+
+  return result;
+}
+
 export default function Notification({navigation, route}) {
+    console.log("Notification screen")
+    const notifications = useSelector((state) => state.noti.noti);
+    const userinfo = useSelector((state) => state.user.userinfo);
+    
+    console.log(userinfo)
+
+    // Get notifications of user
+    let select_notifications = []
+    let receivers = []
+    for (let i = 0; i < notifications.length; ++i) {
+      receivers = notifications[i].receivers;
+      for (let j = 0; j < receivers.length; ++j) {
+          if (userinfo.phonenumber.localeCompare(receivers[j]) == 0) {
+            select_notifications.push(notifications[i]);
+            break;
+          }
+      }
+    }
+    console.log(userinfo)
+    console.log(select_notifications)
+
+    select_notifications = list2view(select_notifications);
+
+    // Mapp notifications to view list
+
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
     });
@@ -35,16 +88,8 @@ export default function Notification({navigation, route}) {
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* <TouchableOpacity 
-              style={header_styles.container}
-              onPress={() => navigation.goBack()}>
-                <AntDesign 
-                    name="left" size={24} color="black" 
-                    style={header_styles.icon}/>
-                <Text style={header_styles.title} >Notitification</Text>
-              </TouchableOpacity> */}
             <SectionList
-            sections={DATA}
+            sections={select_notifications}
             keyExtractor={(item, index) => item + index}
             renderItem={({ item }) => <Item title={item} />}
             renderSectionHeader={({ section: { title } }) => (

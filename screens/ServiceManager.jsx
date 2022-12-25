@@ -13,7 +13,7 @@ const ServiceManager = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={[styles.box, styles.card, styles.shadowProp]}>
         <TouchableOpacity
-          onPress={() => setModalPostRoom(true)}
+          // onPress={() => setModalPostRoom(true)}
           style={styles.item}
         >
           <Image source={PostRoom}></Image>
@@ -22,7 +22,7 @@ const ServiceManager = ({ navigation, route }) => {
 
         <TouchableOpacity
           style={styles.item}
-          onPress={() => setModalInvoice(true)}
+          // onPress={() => setModalInvoice(true)}
         >
           <Image source={Document}></Image>
           <Text>Create Invoice</Text>
@@ -32,13 +32,13 @@ const ServiceManager = ({ navigation, route }) => {
       <PostRoomServiceModal
         isVisible={modalPostRoom}
         onCancel={() => {
-          setModalPostRoom(false);
+          // setModalPostRoom(false);
         }}
       />
       <InvoiceServiceModal
         isVisible={modalInvoice}
         onCancel={() => {
-          setModalInvoice(false);
+          // setModalInvoice(false);
         }}
       />
     </View>

@@ -1,36 +1,50 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const accountSlice = createSlice({
-    name: 'accounts',
+    name: 'users',
     initialState: {
         accounts: [
             {
-                name: "Vũ Nguyễn Minh Huy",
-                nickname: "Huy",
-                phonenumber: "0123456789",
-                email: "nguyenvanan@gmail.com",
+                name: "Admin",
+                nickname: "admin",
+                email: "admin@gmail.com",
+                phone: "000000000",
+                room: []
             },
             {
-                name: "Châu Thành Đạt",
-                nickname: "Đạt",
-                phonenumber: "9876543210",
-                email: "thanhdat@gmail.com",
+                name: "Minh Huy",
+                nickname: "SimpleNeverWin",
+                email: "huy@gmail.com",
+                phone: "111111111", // Key
+                room: ["room1"]
             },
             {
-                name: "Đặng Quốc Thanh",
-                nickname: "Thanh",
-                phonenumber: "13151719",
-                email: "thanhquoc@gmail.com",
+                name: "Chau Thanh Dat",
+                nickname: "Dat",
+                email: "dat@gmail.com",
+                phone: "222222222",
+                room: ["room2"]
             },
             {
-                name: "Tran Hoang Hai",
-                nickname: "Hai",
-                phonenumber: "03042289",
+                name: "Hồ Vũ Đại Hải",
+                nickname: "Hải",
                 email: "hai@gmail.com",
+                phone: "333333333",
+                room: ["room2"]
             },
+            {
+                name: "Dang Quoc Thanh",
+                nickname: "Thanh",
+                email: "thanh@gmail.com",
+                phone: "444444444",
+                room: ["room3"]
+            }
         ]
     },
     reducers: {
+        initAccounts: (state, action) => {
+            state.accounts = action.payload
+        },
         addAccount: (state, action) => {
             state.accounts.push(action.payload);
         },
@@ -47,5 +61,5 @@ export const accountSlice = createSlice({
     }
 })
 
-export const { addAccount, popAccount } = accountSlice.actions
+export const { addAccount, popAccount, initAccounts} = accountSlice.actions
 export default accountSlice.reducer

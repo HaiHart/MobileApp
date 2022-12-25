@@ -12,14 +12,75 @@ import CheckBox from "expo-checkbox";
 import * as FileSystem from "expo-file-system";
 import { Role } from "./Register";
 import PhoneInput from "react-native-phone-input";
+import { useSelector, useDispatch} from "react-redux";
+import { updateProfile } from "../store/userSlices";
+import axios from "axios";
+import { initNotification } from "../store/notificationSlices";
+import { initAccounts } from "../store/accountSlices";
+import { initRooms } from "../store/roomsSlices";
+import { initServices } from "../store/serviceSlices";
+
+const fetchData = () => {
+  const url = "https://1cf2-2402-800-6319-fdcc-89fa-d526-d794-cc94.ap.ngrok.io"
+  axios({
+    method: 'get',
+    url: `${url}/api/v1/notifications`,
+  }).then(function (response) {
+    console.log("Notifications");
+    console.log(response.data);
+    dispatch(
+      initNotification(response.data)
+    )
+  });
+  
+  axios({
+    method: 'get',
+    url: `${url}/api/v1/users`,
+  }).then(function (response) {
+    console.log("Accounts");
+    console.log(response.data);
+    dispatch(
+      initAccounts(response.data)
+    )
+  });
+
+  axios({
+    method: 'get',
+    url: `${url}/api/v1/rooms`,
+  }).then(function (response) {
+    console.log("Rooms");
+    console.log(response.data);
+      dispatch(
+        initRooms(response.data)
+      )
+    });
+
+    axios({
+      method: 'get',
+      url: `${url}/api/v1/services`,
+    }).then(function (response) {
+      console.log("services");
+      console.log(response.data);
+      dispatch(
+        initServices(response.data)
+      )
+    });
+}
 
 export default function Login({ navigation, route }) {
+  
+
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
   const [role, setRole] = useState("");
   const [chose, setChose] = useState(false);
+  const [hasFetchData, setHasFetchData] = useState(false);
+  
+  const dispatch = useDispatch();
+  const accounts = useSelector((state) => state.accounts.accounts);
 
   BackHandler.addEventListener("hardwareBackPress", function () {
     if (chose) {
@@ -29,64 +90,36 @@ export default function Login({ navigation, route }) {
   });
 
   const OnSubmit = () => {
-    if (toggleCheckBox) {
-      let fileUri = FileSystem.documentDirectory + "text.txt";
-
-      FileSystem.writeAsStringAsync(fileUri, `${phone}:${pass}`, {
-        encoding: FileSystem.EncodingType.UTF8,
-      })
-        .then(() => {
-          console.log(phone);
-          navigation.navigate("HomeManager", { info: "yes" });
-        })
-        .catch(function (error) {
-          console.log(
-            "There has been a problem with your fetch operation: " +
-              error.message
-          );
-        });
+    let user = null
+    for (let i = 0; i < accounts.length; ++i) {
+      if (phone.localeCompare(accounts[i].phone) == 0) {
+        user = accounts[i];
+        break;
+      }
     }
 
-    let fileUri = FileSystem.documentDirectory + "Account.txt";
-    FileSystem.getInfoAsync(fileUri).then((tmp) => {
-      if (tmp.exists) {
-        console.log(tmp);
-        FileSystem.readAsStringAsync(fileUri, {
-          encoding: FileSystem.EncodingType.UTF8,
+    if (user != null) {
+      dispatch(
+        updateProfile({
+          name: user.name,
+          nickname: user.nickname,
+          phonenumber: user.phone,
+          email: user.email,
         })
-          .then((answer) => {
-            console.log(answer);
-            const input = JSON.parse(answer);
-            if (input[phone]){
-              if (input[phone]["pass"] === pass){
-                setName(input[phone]['name'])
-                setChose(true)
-                return
-              }else{
-                alert("wrong password")
-              }
-            }else{
-              alert("No phone number")
-            }
-            
-          })
-          .catch(function (error) {
-            console.log(
-              "There has been a problem with your fetch operation: " +
-                error.message
-            );
-          });
-        }
-      })
-    if (phone === "113" || pass == "113") {
-      console.log("In");
-      console.log(">> 113 goes here");
-      navigation.navigate("HomeManager", { info: "yes" });
+      )
+      navigation.navigate("HomeManager", { info: "yes"});
     }
-    // navigation.navigate("HomeManager", { info: pass + ":" + phone });
+    else {
+      alert("Your account is not exists")
+    }
   };
 
   useEffect(() => {
+    if (!hasFetchData) {
+      console.log("Fetch data")
+      //fetchData();
+      setHasFetchData(true);
+    }
     let fileUri = FileSystem.documentDirectory + "text.txt";
     FileSystem.getInfoAsync(fileUri)
       .then((tmp) => {
@@ -114,7 +147,7 @@ export default function Login({ navigation, route }) {
           "There has been a problem with your fetch operation: " + error.message
         );
       });
-  }, []);
+  }, [hasFetchData]);
 
   if (chose) {
     return <Role 

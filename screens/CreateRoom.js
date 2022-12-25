@@ -8,8 +8,12 @@ import {
   TextInput,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import {useDispatch } from "react-redux";
+import {addRoom} from "../store/roomsSlices"
 
 export default function CreateRoom({ navigation, route }) {
+  const dispatch = useDispatch();
+
   const backIcon = () => {
     return (
       <Svg width="10" height="18" viewBox="0 0 10 18" fill="none">
@@ -23,6 +27,17 @@ export default function CreateRoom({ navigation, route }) {
       </Svg>
     );
   };
+
+  const createRoom = () => {
+    dispatch(
+      addRoom({
+          ownerPhone: "000000000",
+          renters: [],
+          services: []
+        })
+    )
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.background}>
@@ -79,8 +94,11 @@ export default function CreateRoom({ navigation, route }) {
           placeholderTextColor="#D5D5E1"
           cursorColor={"#FF97B5"}
         ></TextInput>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>CREATE MOTEL</Text>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={createRoom}
+          >
+          <Text style={styles.buttonText}>CREATE ROOM</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

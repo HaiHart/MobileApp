@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { CreateRoomItem, RoomListItem } from "../Components/RoomListItem";
+import { useSelector } from "react-redux";
+
 
 export default function Motel({ navigation, route }) {
   const onPressRoom = () => {
@@ -43,17 +45,20 @@ export default function Motel({ navigation, route }) {
     )
   }
 
+  const rooms = useSelector((state) => state.rooms.rooms);
+  const roomListItems = rooms.map((room, index) =>
+   <RoomListItem onPress={onPressRoom} info={room}/>
+  )
+
   return (
     <View style={styles.background}>
       <ScrollView
         horizontal={false}
       >
         <CreateRoomItem onPress={onPressCreateRoom} />
-        <RoomListItem onPress={onPressRoom} />
-        <RoomListItem onPress={onPressRoom} />
-        <RoomListItem onPress={onPressRoom} />
-        <RoomListItem onPress={onPressRoom} />
-        <RoomListItem onPress={onPressRoom} />
+        {
+          roomListItems
+        }
       </ScrollView>
     </View>
   );

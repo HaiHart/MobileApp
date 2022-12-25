@@ -47,7 +47,12 @@ export default function Profile({ navigation, route }) {
       setIsEditProfile(false);
       navigation.navigate("EditProfile", { userinfo: userinfo });
     }
-  }, [isReturn, isEditProfile, userinfo]);
+
+    if (isSignout == true)
+    {
+      navigation.navigate("Login")
+    }
+  }, [isReturn, isEditProfile, userinfo,isSignout ]);
 
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/Montserrat-Regular.ttf"),
